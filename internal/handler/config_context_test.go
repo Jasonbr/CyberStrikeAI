@@ -18,6 +18,7 @@ import (
 func TestGetConfigReportsContextWindowDefaultsSeparately(t *testing.T) {
 	cfg := &config.Config{AI: config.AIConfig{Channels: map[string]config.AIChannelConfig{
 		"flash":   {BaseURL: "https://api.deepseek.com", Model: "deepseek-flash"},
+		"pro":     {BaseURL: "https://api.deepseek.com", Model: "deepseek-v4-pro"},
 		"local":   {ContextProfile: "local", ContextWindow: 65536},
 		"gateway": {BaseURL: "https://example.test", Model: "deepseek-flash"},
 	}}}
@@ -33,7 +34,7 @@ func TestGetConfigReportsContextWindowDefaultsSeparately(t *testing.T) {
 	if err := json.Unmarshal(res.Body.Bytes(), &result); err != nil {
 		t.Fatal(err)
 	}
-	if defaults := result.ContextWindowDefaults; defaults["flash"] != 1048576 || defaults["local"] != 32768 || len(defaults) != 2 {
+	if defaults := result.ContextWindowDefaults; defaults["flash"] != 1048576 || defaults["pro"] != 1048576 || defaults["local"] != 32768 || len(defaults) != 3 {
 		t.Fatalf("unexpected context window defaults: %v", defaults)
 	}
 	if result.AI.Channels["flash"].ContextWindow != 0 || result.AI.Channels["local"].ContextWindow != 65536 {

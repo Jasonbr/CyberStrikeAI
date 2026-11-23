@@ -5154,9 +5154,10 @@ func (h *OpenAPIHandler) GetOpenAPISpec(c *gin.Context) {
 									"type":     "object",
 									"required": []string{"api_key"},
 									"properties": map[string]interface{}{
-										"provider": map[string]interface{}{"type": "string", "description": "LLM提供商（openai/claude）", "example": "openai"},
-										"base_url": map[string]interface{}{"type": "string", "description": "API基地址（可选）"},
-										"api_key":  map[string]interface{}{"type": "string", "description": "API密钥"},
+										"provider":        map[string]interface{}{"type": "string", "description": "LLM提供商（openai/claude）", "example": "openai"},
+										"context_profile": map[string]interface{}{"type": "string", "description": "用于预览模型默认窗口的上下文配置"},
+										"base_url":        map[string]interface{}{"type": "string", "description": "API基地址（可选）"},
+										"api_key":         map[string]interface{}{"type": "string", "description": "API密钥"},
 									},
 								},
 							},
@@ -5174,7 +5175,13 @@ func (h *OpenAPIHandler) GetOpenAPISpec(c *gin.Context) {
 											"supported": map[string]interface{}{"type": "boolean"},
 											"error":     map[string]interface{}{"type": "string"},
 											"models":    map[string]interface{}{"type": "array", "items": map[string]interface{}{"type": "string"}},
-											"count":     map[string]interface{}{"type": "integer"},
+											"model_defaults": map[string]interface{}{"type": "object", "additionalProperties": map[string]interface{}{
+												"type": "object", "properties": map[string]interface{}{
+													"context_window": map[string]interface{}{"type": "integer"},
+													"image_input":    map[string]interface{}{"type": "boolean"},
+												},
+											}},
+											"count": map[string]interface{}{"type": "integer"},
 										},
 									},
 								},

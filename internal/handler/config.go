@@ -1673,6 +1673,7 @@ func (h *ConfigHandler) testTypeSafe(c *gin.Context, req TestTypeSafeRequest) {
 
 // ListModelsRequest 获取模型列表请求（OpenAI 兼容 GET /models）。
 type ListModelsRequest struct {
+	ContextProfile  string `json:"context_profile,omitempty"`
 	CredentialScope string `json:"credential_scope,omitempty"`
 	ChannelID       string `json:"channel_id,omitempty"`
 	Provider        string `json:"provider"`
@@ -1745,11 +1746,25 @@ func (h *ConfigHandler) ListModels(c *gin.Context) {
 		return
 	}
 
+	// Use the same defaults as the saved-channel view for unsaved model selections.
+	type modelDefaults struct {
+		ContextWindow int   `json:"context_window,omitempty"`
+		ImageInput    *bool `json:"image_input,omitempty"`
+	}
+	defaults := make(map[string]modelDefaults)
+	for _, id := range models {
+		model := config.OpenAIConfig{BaseURL: baseURL, Provider: provider, Model: id, ContextProfile: req.ContextProfile}
+		entry := modelDefaults{ContextWindow: model.DefaultContextWindow(), ImageInput: model.ImageInputCapability()}
+		if entry.ContextWindow > 0 || entry.ImageInput != nil {
+			defaults[id] = entry
+		}
+	}
 	c.JSON(http.StatusOK, gin.H{
-		"success":   true,
-		"supported": true,
-		"models":    models,
-		"count":     len(models),
+		"success":        true,
+		"supported":      true,
+		"models":         models,
+		"model_defaults": defaults,
+		"count":          len(models),
 	})
 }
 

@@ -8,7 +8,7 @@ const (
 	// DefaultLocalContextWindow 是 local 档位下未提供 context_window 时的保守窗口。
 	DefaultLocalContextWindow = 32768
 	// DeepSeek's official /models response reports this total input and output window.
-	deepSeekFlashContextWindow = 1048576
+	deepSeekContextWindow = 1048576
 	// LocalContextBudgetPercent 是 local 档位把原生窗口折算成提示词预算的比例。
 	LocalContextBudgetPercent = 60
 	// LocalContextBudgetCap 防止 256K/1M 窗口把预算放大到超出本地模型有效上下文。
@@ -73,8 +73,11 @@ func (c OpenAIConfig) DefaultContextWindow() int {
 	if c.IsLocalContextProfile() {
 		return DefaultLocalContextWindow
 	}
-	if c.IsDeepSeekOfficialEndpoint() && strings.EqualFold(strings.TrimSpace(c.Model), "deepseek-flash") {
-		return deepSeekFlashContextWindow
+	if c.IsDeepSeekOfficialEndpoint() {
+		switch strings.ToLower(strings.TrimSpace(c.Model)) {
+		case "deepseek-flash", "deepseek-v4-pro":
+			return deepSeekContextWindow
+		}
 	}
 	return 0
 }

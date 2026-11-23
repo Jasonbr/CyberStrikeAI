@@ -207,13 +207,16 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
     const [drafts, setDrafts] = useState({});
     const draft = drafts[channelId] || {};
     const form = { ...baseline, ...draft };
+    const [listedDefaults, setListedDefaults] = useState(null);
+    const listedModel = listedDefaults && Object.hasOwn(listedDefaults, form.model) ? listedDefaults[form.model] : undefined;
     const sameModelEndpoint = ['model', 'base_url', 'provider'].every(field => form[field] === baseline[field]);
     const imageMode = draft.image_input ?? (sameModelEndpoint ? baseline.image_input : '');
-    const imageDefault = sameModelEndpoint ? config.image_input_defaults?.[legacy ? '' : channelId] : undefined;
+    const imageDefault = sameModelEndpoint ? config.image_input_defaults?.[legacy ? '' : channelId] : listedModel?.image_input;
     const imageEnabled = imageMode === 'enabled' || (imageMode !== 'disabled' && imageDefault === true);
-    const defaultWindow = config.context_window_defaults?.[legacy ? '' : channelId];
-    const useDefaultWindow = defaultWindow > 0 && !form.context_window && !Object.hasOwn(draft, 'context_window')
-        && ['base_url', 'model', 'context_profile'].every(field => form[field] === baseline[field]);
+    const defaultWindow = sameModelEndpoint && form.context_profile === baseline.context_profile
+        ? config.context_window_defaults?.[legacy ? '' : channelId]
+        : listedModel?.context_window;
+    const useDefaultWindow = defaultWindow > 0 && !form.context_window && !Object.hasOwn(draft, 'context_window');
     const dirty = Object.keys(draft).length > 0;
     const [busy, setBusy] = useState('');
     const [state, setState] = useState(EMPTY_PROBE);
@@ -237,7 +240,9 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
         });
     };
     const update = (key, value) => {
-        if (state.key !== 'list' || !state.payload?.success || ['base_url', 'api_key', 'provider'].includes(key)) {
+        const listChanged = ['provider', 'base_url', 'api_key', 'context_profile'].includes(key);
+        if (listChanged) setListedDefaults(null);
+        if (state.key !== 'list' || !state.payload?.success || listChanged) {
             setState(EMPTY_PROBE);
         }
         setDrafts(current => {
@@ -251,12 +256,14 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
         });
     };
     const selectChannel = id => {
+        setListedDefaults(null);
         setSelectedId(id);
         setState(EMPTY_PROBE);
         if (!applyPending) setSaveError(null);
     };
 
     const discardDraft = () => {
+        setListedDefaults(null);
         clearDraft();
         setState(EMPTY_PROBE);
         if (!applyPending) setSaveError(null);
@@ -317,9 +324,11 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
     const run = async (key, path, body) => {
         if (locked || busy) return;
         setBusy(key);
+        if (key === 'list') setListedDefaults(null);
         setState(EMPTY_PROBE);
         try {
             const payload = await api.post(path, body);
+            if (key === 'list' && payload.success) setListedDefaults(payload.model_defaults || null);
             const detectedWindow = payload.context_window;
             const fillWindow = key === 'context' || (key === 'test' && ['', '0'].includes(form.context_window.trim()));
             if (fillWindow && payload.success && Number.isSafeInteger(detectedWindow) && detectedWindow > 0
@@ -546,6 +555,7 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
                     loading={busy === 'list'}
                     disabled={locked || !!busy}
                     onClick={() => run('list', '/config/list-models', {
+                        context_profile: form.context_profile,
                         provider: form.provider,
                         channel_id: legacy ? undefined : channelId,
                         credential_scope: legacy ? 'openai' : undefined,

@@ -47,6 +47,38 @@ test.describe('model channel editing', () => {
         expect(config.ai.channels.primary.model).toBe('primary-model');
     });
 
+    test('switching from Flash to Pro previews its context window and image capability', async ({ page, mockApi }) => {
+        const config = modelConfig();
+        config.ai.channels.primary.model = 'deepseek-flash';
+        config.context_window_defaults = { primary: 1048576 };
+        config.image_input_defaults = { primary: true };
+        mockApi.respond('GET', '/api/config', { json: config });
+        mockApi.respond('POST', '/api/config/list-models', { json: {
+            success: true, models: ['deepseek-flash', 'deepseek-v4-pro'],
+            model_defaults: {
+                'deepseek-flash': { context_window: 1048576, image_input: true },
+                'deepseek-v4-pro': { context_window: 1048576, image_input: false }
+            }
+        } });
+        await page.goto('/static/app/#/settings?section=models');
+        const panel = (await ready(page)).locator('.settings-channel-panel');
+        const window = panel.getByLabel('模型上下文窗口（Token）', { exact: true });
+        const image = panel.getByText('支持图片', { exact: true });
+        const picker = panel.getByRole('combobox', { name: '请选择模型' });
+        await panel.getByRole('button', { name: '获取模型列表' }).click();
+        await expect(image).toBeVisible();
+        await picker.click();
+        await page.getByRole('option').filter({ hasText: 'deepseek-v4-pro' }).click();
+        await expect(window).toHaveValue('1048576');
+        await expect(image).toHaveCount(0);
+        await window.fill('65536');
+        await picker.click();
+        await page.getByRole('option').filter({ hasText: 'deepseek-flash' }).click();
+        await expect(image).toBeVisible();
+        await expect(window).toHaveValue('65536');
+        expect(mockApi.calls('PUT', '/api/config')).toEqual([]);
+    });
+
     test('uses the server default until a manual context window is saved', async ({ page, mockApi }) => {
         const config = modelConfig();
         config.ai.default_channel = 'qwen-max';
