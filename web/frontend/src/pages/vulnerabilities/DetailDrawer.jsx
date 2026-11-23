@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Collapse, Radio, RadioGroup, SideSheet, Space, Spin, Tabs, Timeline, Typography } from '@douyinfe/semi-ui';
-import { IconDelete, IconEdit, IconRefresh } from '@douyinfe/semi-icons';
+import { IconDelete, IconEdit, IconPlay, IconRefresh } from '@douyinfe/semi-icons';
 import { api, downloadFile } from '../../lib/http';
 import { formatDateTime } from '../../lib/format';
 import { useResource } from '../../components/hooks';
@@ -10,6 +10,7 @@ import {
     CopyButton, ErrorBanner, KeyValueList, MarkdownView, SeverityTag, StatusTag, toastError, toastSuccess
 } from '../../components/ui';
 import { historyText, hostPortText, hostText, shortId, statusText } from './shared';
+import RetestModal from './RetestModal';
 
 const { Text, Paragraph } = Typography;
 
@@ -85,6 +86,7 @@ export default function DetailDrawer({
     const [tab, setTab] = useState('overview');
     const [format, setFormat] = useState('docx');
     const [downloading, setDownloading] = useState(false);
+    const [retestOpen, setRetestOpen] = useState(false);
 
     const context = useResource(
         () => api.get(`/vulnerabilities/${encodeURIComponent(vulnId)}/context`),
@@ -190,6 +192,17 @@ export default function DetailDrawer({
                     <Button icon={<IconRefresh />} onClick={() => context.reload()} loading={context.loading}>
                         {t('common.refresh', null, '刷新')}
                     </Button>
+                    {canWrite && (
+                        <Button
+                            theme="solid"
+                            type="primary"
+                            icon={<IconPlay />}
+                            disabled={!vuln || !vuln.conversation_id}
+                            onClick={() => setRetestOpen(true)}
+                        >
+                            {t('vulnerabilityRetest.button', null, '复测')}
+                        </Button>
+                    )}
                     {canWrite && (
                         <Button icon={<IconEdit />} disabled={!vuln} onClick={() => onEdit(vuln)}>
                             {t('common.edit', null, '编辑')}
@@ -372,6 +385,7 @@ export default function DetailDrawer({
                     </Tabs.TabPane>
                 </Tabs>
             )}
+            <RetestModal visible={retestOpen} vuln={vuln} onClose={() => setRetestOpen(false)} />
         </SideSheet>
     );
 }

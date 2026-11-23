@@ -48,6 +48,7 @@ export const VULNERABILITY = {
     type: '访问控制', project_id: PROJECT.id, target: 'http://localhost:8080/example',
     host: 'localhost', description: '匿名回归数据，不代表真实漏洞。',
     evidence: 'FAKE-EVIDENCE: local fixture only', recommendation: '核对示例访问权限。',
+    conversation_id: 'fixture-conversation', retest_notes: '修复后该路径应返回 403。',
     created_at: STAMP, updated_at: STAMP
 };
 export const ASSESSMENT = {

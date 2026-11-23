@@ -6,6 +6,7 @@ import { Button, Collapse, Progress, SideSheet, Typography } from '@douyinfe/sem
 import { api } from '../../lib/http';
 import { useAuth } from '../../lib/auth';
 import { useT } from '../../lib/i18n';
+import { consumeRetestAutosend, peekRetestAutosend } from '../../lib/retest';
 import { useDebounced, useInterval, useLocalStorage, useResource } from '../../components/hooks';
 import { toastError, toastSuccess, toastWarning } from '../../components/ui';
 import ProjectFormModal from '../projects/project-form';
@@ -512,6 +513,64 @@ export default function Page() {
             hitl: !conversationId && canDecideHitl ? draftHitl || undefined : undefined
         });
     }, [attachments, backgroundRunning, canWrite, canExecute, canDecideHitl, checkingRun, conversationId, draft, draftHitl, mode, model, newProjectId, projectSaving, resetRun, role, roleResolved, run, sending, t, updateComposer]);
+
+    // 漏洞页创建复测分支后跳转过来：自动发出服务端已解析的复测提示词（一键执行）。
+    const retestAutoSentRef = useRef(new Set());
+    const retestNotifiedRef = useRef('');
+    const retestDraftRestoredRef = useRef('');
+    useEffect(() => {
+        if (!conversationId) return;
+        const entry = peekRetestAutosend(conversationId);
+        if (!entry) return;
+        const message = String(entry.prompt || '').trim();
+        if (!message) {
+            consumeRetestAutosend(conversationId);
+            return;
+        }
+        if (detail.error || !canWrite || !canExecute) {
+            // 无法发送时提示并放弃自动执行；服务端仍保存 pending_prompt，回填输入框供手动续发。
+            if (retestNotifiedRef.current !== conversationId) {
+                retestNotifiedRef.current = conversationId;
+                consumeRetestAutosend(conversationId);
+                toastWarning(t('vulnerabilityRetest.startFailed', null, '复测尚未成功发送，提示词已保存在分支中，请返回该分支继续。'));
+            }
+            return;
+        }
+        if (sending || backgroundRunning || checkingRun || !roleResolved) return;
+        // 等分支详情加载完成再发送：角色/审批配置继承自原始对话。
+        if (detail.conversation?.id !== conversationId) return;
+        consumeRetestAutosend(conversationId);
+        const id = conversationRef.current;
+        retestAutoSentRef.current.add(id);
+        updateComposer(id, current => ({ ...current, draft: '', attachments: [] }));
+        setDetail(prev => prev.conversation?.id === id ? {
+            ...prev,
+            messages: [
+                ...(prev.messages || []),
+                { id: `local-${Date.now()}`, role: 'user', content: message, createdAt: new Date().toISOString() }
+            ]
+        } : prev);
+        resetRun();
+        run.send({ message, mode, role, ...model.request });
+    }, [conversationId, detail.conversation, detail.error, sending, backgroundRunning, checkingRun,
+        roleResolved, canWrite, canExecute, mode, model, resetRun, role, run, t, updateComposer]);
+
+    // 手动打开复测分支或自动发送被中断时：把服务端保存的 pending_prompt 回填输入框。
+    useEffect(() => {
+        const conversation = detail.conversation;
+        const pendingPrompt = String(conversation?.retest?.pending_prompt || '').trim();
+        if (!conversationId || conversation?.id !== conversationId || !pendingPrompt) return;
+        if (retestAutoSentRef.current.has(conversationId)) return;
+        // 一键执行还在等前置条件时不回填，避免发送时输入框残留提示词。
+        if (peekRetestAutosend(conversationId)) return;
+        if (sending || backgroundRunning) return;
+        if (String(draft || '').trim()) return;
+        // 只回填一次：用户清空后不再覆盖。
+        if (retestDraftRestoredRef.current !== conversationId) {
+            retestDraftRestoredRef.current = conversationId;
+            updateComposer(conversationId, current => ({ ...current, draft: pendingPrompt }));
+        }
+    }, [conversationId, detail.conversation, draft, sending, backgroundRunning, updateComposer]);
 
     const conversation = detail.conversation;
     const revealedConversation = useRef('');
