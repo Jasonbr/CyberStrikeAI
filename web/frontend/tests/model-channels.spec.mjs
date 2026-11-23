@@ -16,6 +16,37 @@ function modelConfig() {
 test.describe('model channel editing', () => {
     test.use({ appPermissions: [...UI_PERMISSIONS, 'config:write'] });
 
+    test('selects a fetched model beyond the first 120 and saves it on the active channel', async ({ page, mockApi }) => {
+        const config = modelConfig();
+        config.ai.default_channel = 'qwen-max';
+        const models = Array.from({ length: 125 }, (_, index) => `fixture-model-${index}`);
+        mockApi.respond('GET', '/api/config', () => ({ json: config }));
+        mockApi.respond('POST', '/api/config/list-models', { json: { success: true, models } });
+        mockApi.respond('PUT', '/api/config', ({ body }) => {
+            const { channel_id, model } = body.ai_channel;
+            config.ai.channels[channel_id].model = model;
+            return { json: {} };
+        });
+        mockApi.respond('POST', '/api/config/apply', { json: {} });
+        await page.goto('/static/app/#/settings?section=models');
+        const panel = (await ready(page)).locator('.settings-channel-panel');
+        const model = panel.locator('.settings-probe-form').getByLabel('模型', { exact: true });
+        const picker = panel.getByRole('combobox', { name: '请选择模型' });
+        await panel.getByRole('button', { name: '获取模型列表' }).click();
+        await expect(model).toHaveValue('deepseek-flash');
+        await picker.click();
+        await picker.getByRole('textbox').fill('124');
+        await page.getByRole('option').filter({ hasText: 'fixture-model-124' }).click();
+        await expect(model).toHaveValue('fixture-model-124');
+        expect(mockApi.calls('PUT', '/api/config')).toEqual([]);
+        await panel.getByRole('button', { name: '保存通道' }).click();
+        await expect(panel.getByRole('button', { name: '保存通道' })).toBeDisabled();
+        await expect.poll(() => mockApi.calls('POST', '/api/config/apply').length).toBe(1);
+        await page.reload();
+        await expect(model).toHaveValue('fixture-model-124');
+        expect(config.ai.channels.primary.model).toBe('primary-model');
+    });
+
     test('uses the server default until a manual context window is saved', async ({ page, mockApi }) => {
         const config = modelConfig();
         config.ai.default_channel = 'qwen-max';

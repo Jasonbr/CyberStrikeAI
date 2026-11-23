@@ -3235,7 +3235,7 @@
     "fetchModels": "Загрузить список",
     "modelsListFetching": "Загрузка списка моделей...",
     "modelsListSelectPlaceholder": "Выберите модель",
-    "modelsListSuccess": "Загружено моделей: {count} — выберите в списке справа или введите в поле",
+    "modelsListSuccess": "Загружено моделей: {{count}}",
     "modelsListFailed": "Не удалось загрузить список моделей",
     "modelsListNeedApiKey": "Сначала введите ключ API",
     "modelsListClaudeHint": "Claude не поддерживает автозагрузку списка моделей; введите имя модели вручную",

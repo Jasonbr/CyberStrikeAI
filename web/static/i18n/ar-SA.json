@@ -3077,7 +3077,7 @@
     "fetchModels": "جلب القائمة",
     "modelsListFetching": "جارٍ جلب قائمة النماذج...",
     "modelsListSelectPlaceholder": "اختر نموذجًا",
-    "modelsListSuccess": "تم تحميل {count} نموذج — استخدم القائمة المنسدلة على اليمين، أو اكتب في حقل الإدخال",
+    "modelsListSuccess": "تم تحميل {{count}} نموذج",
     "modelsListFailed": "فشل جلب قائمة النماذج",
     "modelsListNeedApiKey": "يُرجى إدخال API Key أولاً",
     "modelsListClaudeHint": "لا يدعم Claude جلب قائمة النماذج تلقائيًّا؛ أدخل اسم النموذج يدويًّا",

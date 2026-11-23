@@ -68,14 +68,7 @@
 .settings-channel-panel .semi-card-header-wrapper { align-items: center; gap: 8px; }
 .settings-channel-notices { display: grid; gap: 8px; margin-top: 14px; }
 .settings-probe-result { margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
-.settings-model-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    max-height: 190px;
-    overflow: auto;
-    padding: 2px;
-}
+.settings-model-picker { width: min(280px, 60vw); }
 .settings-audit-model {
     margin-top: 18px;
     border-top: 1px solid var(--semi-color-border);

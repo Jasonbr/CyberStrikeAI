@@ -3,6 +3,12 @@ import { test, expect, ready, UI_PERMISSIONS } from './fixtures.mjs';
 const auditURL = 'https://ws-example.cn-beijing.maas.aliyuncs.com/compatible-mode/v1';
 const mainModel = { provider: 'claude', base_url: 'https://main.example.test', model: 'main-model', api_key: '********' };
 
+async function openAuditCard(main) {
+    const section = main.locator('.settings-audit-model');
+    await section.getByText('审计模型', { exact: true }).click();
+    return section.locator('.settings-probe-card');
+}
+
 test.describe('audit model connection test', () => {
     test.use({ appPermissions: [...UI_PERMISSIONS, 'config:write'] });
 
@@ -22,7 +28,7 @@ test.describe('audit model connection test', () => {
             mockApi.respond('POST', '/api/config/test-audit-model', { json: { success: true, model: entry.model || 'configured-model', latency_ms: 123 } });
             await page.goto('/static/app/#/settings?section=models');
             const main = await ready(page);
-            const card = main.locator('.settings-probe-card').filter({ has: page.getByText('审计模型连接测试', { exact: true }) });
+            const card = await openAuditCard(main);
             await expect(card.getByText(entry.protocol, { exact: true })).toBeVisible();
             await expect(card.getByLabel('API 地址', { exact: true })).toHaveValue(entry.url);
             await expect(card.getByLabel('API 密钥', { exact: true })).toHaveAttribute('type', 'password');
@@ -51,7 +57,7 @@ test('audit model viewer cannot edit or start a test', async ({ page, mockApi })
     mockApi.respond('GET', '/api/config', { json: { openai: mainModel, tools: [] } });
     await page.goto('/static/app/#/settings?section=models');
     const main = await ready(page);
-    const card = main.locator('.settings-probe-card').filter({ has: page.getByText('审计模型连接测试', { exact: true }) });
+    const card = await openAuditCard(main);
     await expect(card.getByLabel('API 地址', { exact: true })).toHaveAttribute('readonly', '');
     await expect(card.getByRole('button', { name: '测试审计模型', exact: true })).toBeDisabled();
     expect(mockApi.writes()).toEqual([]);

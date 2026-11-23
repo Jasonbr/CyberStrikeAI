@@ -101,8 +101,9 @@ function summarizeContext(t, payload, fallbackWindow) {
     ];
 }
 
-function ProbeOutput({ state, defaultWindow }) {
+function ProbeOutput({ state, defaultWindow, model, onModelChange, disabled }) {
     const t = useT();
+    const pickerLabelId = useId();
     const { key, payload, error } = state;
     if (error) return <ErrorBanner error={error} />;
     if (!payload) return null;
@@ -119,15 +120,25 @@ function ProbeOutput({ state, defaultWindow }) {
             );
         }
         const models = Array.isArray(payload.models) ? payload.models : [];
+        const selectLabel = t('settingsBasic.modelsListSelectPlaceholder', null, '请选择模型');
         return (
             <div className="settings-probe-result">
-                <Space spacing={8}>
+                <Space wrap spacing={8}>
                     <Text>{t('settingsBasic.modelsListSuccess', { count: payload.count ?? models.length }, `已获取 ${payload.count ?? models.length} 个模型`)}</Text>
+                    <span id={pickerLabelId} hidden>{selectLabel}</span>
+                    {models.length > 0 && (
+                        <Select
+                            filter
+                            aria-labelledby={pickerLabelId}
+                            placeholder={selectLabel}
+                            value={models.includes(model) ? model : undefined}
+                            optionList={models.map(id => ({ value: id, label: id }))}
+                            onChange={onModelChange}
+                            disabled={disabled}
+                            className="settings-model-picker"
+                        />
+                    )}
                 </Space>
-                <div className="settings-model-tags">
-                    {models.slice(0, 120).map(model => <Tag key={String(model)} size="small">{String(model)}</Tag>)}
-                    {models.length > 120 && <Tag size="small" color="grey">…</Tag>}
-                </div>
             </div>
         );
     }
@@ -209,7 +220,7 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
     const [saving, setSaving] = useState(false);
     const [saveError, setSaveError] = useState(null);
     const [applyPending, setApplyPending] = useState(false);
-    const locked = !canWrite || saving || busy === 'image';
+    const locked = !canWrite || saving || busy === 'image' || busy === 'list';
     const channelOptions = legacy
         ? [{ value: MAIN_CHANNEL, label: t('settingsProbe.mainChannel', null, '主模型通道') }]
         : modelChannelOptions(Object.entries(channels));
@@ -226,7 +237,9 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
         });
     };
     const update = (key, value) => {
-        setState(EMPTY_PROBE);
+        if (state.key !== 'list' || !state.payload?.success || ['base_url', 'api_key', 'provider'].includes(key)) {
+            setState(EMPTY_PROBE);
+        }
         setDrafts(current => {
             const next = { ...current[channelId] };
             const modelFields = ['model', 'base_url', 'provider'];
@@ -543,7 +556,13 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
                     {t('settingsBasic.modelsList', null, '获取模型列表')}
                 </Button>
             </Space>
-            <ProbeOutput state={state} defaultWindow={useDefaultWindow ? defaultWindow : 0} />
+            <ProbeOutput
+                state={state}
+                defaultWindow={useDefaultWindow ? defaultWindow : 0}
+                model={form.model}
+                onModelChange={value => update('model', value)}
+                disabled={locked}
+            />
 
             <Collapse className="settings-audit-model">
                 <Collapse.Panel itemKey="audit-model" header={(
