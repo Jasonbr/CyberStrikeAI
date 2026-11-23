@@ -13,6 +13,7 @@ const { Text } = Typography;
 
 const MAIN_CHANNEL = '__main__';
 const NO_CHANNELS = {};
+const DEFAULT_FORM_CONTEXT_WINDOW = 1048576;
 const PROVIDERS = [
     { value: 'openai_compatible', key: 'settingsProbe.compatible', fallback: '兼容 OpenAI 的接口' },
     { value: 'claude', key: 'settingsBasic.providerClaude', fallback: 'Claude（Anthropic Messages）' }
@@ -216,7 +217,9 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
     const defaultWindow = sameModelEndpoint && form.context_profile === baseline.context_profile
         ? config.context_window_defaults?.[legacy ? '' : channelId]
         : listedModel?.context_window;
-    const useDefaultWindow = defaultWindow > 0 && !form.context_window && !Object.hasOwn(draft, 'context_window');
+    const needsDefaultWindow = Boolean(form.model.trim()) && !form.context_window;
+    const useDefaultWindow = needsDefaultWindow && !Object.hasOwn(draft, 'context_window');
+    const matchesServerDefault = defaultWindow === DEFAULT_FORM_CONTEXT_WINDOW;
     const dirty = Object.keys(draft).length > 0;
     const [busy, setBusy] = useState('');
     const [state, setState] = useState(EMPTY_PROBE);
@@ -295,6 +298,10 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
             if (Object.hasOwn(changes, key)) changes[key] = numberValue(form[key]);
         }
 
+        if (dirty && needsDefaultWindow && !matchesServerDefault) {
+            changes.context_window = DEFAULT_FORM_CONTEXT_WINDOW;
+        }
+
         setSaving(true);
         try {
             await api.put('/config', { ai_channel: { channel_id: legacy ? '' : channelId, make_default: makeDefault, ...changes } });
@@ -332,7 +339,7 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
             const detectedWindow = payload.context_window;
             const fillWindow = key === 'context' || (key === 'test' && ['', '0'].includes(form.context_window.trim()));
             if (fillWindow && payload.success && Number.isSafeInteger(detectedWindow) && detectedWindow > 0
-                && !payload.context_runtime_unknown && !(useDefaultWindow && detectedWindow === defaultWindow)) {
+                && !payload.context_runtime_unknown && !(useDefaultWindow && matchesServerDefault && detectedWindow === defaultWindow)) {
                 const value = String(detectedWindow);
                 setDrafts(current => {
                     const next = { ...current[channelId] };
@@ -495,7 +502,7 @@ export default function ProbePanel({ config, canWrite, reloadConfig }) {
                             <Text id={labelId} type="tertiary" size="small">{t(key, null, fallback)}</Text>
                             <Input
                                 aria-labelledby={labelId}
-                                value={String(showDefault ? defaultWindow : form[field])}
+                                value={String(showDefault ? DEFAULT_FORM_CONTEXT_WINDOW : form[field])}
                                 onChange={value => update(field, value)}
                                 inputMode="numeric"
                                 readOnly={locked}
