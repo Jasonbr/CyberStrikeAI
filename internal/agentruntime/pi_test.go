@@ -2,6 +2,7 @@ package agentruntime
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"os"
 	"os/exec"
@@ -98,12 +99,49 @@ if(r.type==='cancel')send({type:'result',result:{status:'canceled',response:'par
 	}
 }
 
+func TestPiReportsProtocolFailures(t *testing.T) {
+	for _, tt := range []struct {
+		name       string
+		write      string
+		want       string
+		wantSyntax bool
+	}{
+		{
+			name:  "blank line",
+			write: "process.stdout.write(' \\t\\n');",
+			want:  "read Pi worker output: blank Pi protocol line 2",
+		},
+		{
+			name:       "partial JSON at EOF",
+			write:      "process.stdout.write('{\"type\":', () => process.exit(0));",
+			want:       "read Pi worker output: invalid Pi protocol JSON on line 2: unexpected end of JSON input",
+			wantSyntax: true,
+		},
+	} {
+		t.Run(tt.name, func(t *testing.T) {
+			p := fixtureWorker(t, "input.once('line', () => {"+tt.write+"});")
+			ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+			defer cancel()
+
+			result, err := p.Run(ctx, Request{}, nil, nil, nil)
+			if result != nil || err == nil || err.Error() != tt.want {
+				t.Fatalf("got result=%+v, err=%v, want %q", result, err, tt.want)
+			}
+			var syntaxErr *json.SyntaxError
+			if errors.As(err, &syntaxErr) != tt.wantSyntax {
+				t.Fatalf("got syntax error %v, want syntax error: %t", syntaxErr, tt.wantSyntax)
+			}
+		})
+	}
+}
+
 func TestPiUnexpectedExitIsNotSuccess(t *testing.T) {
 	p := fixtureWorker(t, `input.on('line',()=>process.exit(0));`)
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-	if _, err := p.Run(ctx, Request{}, nil, nil, nil); err == nil {
-		t.Fatal("worker exit without final result was accepted")
+	result, err := p.Run(ctx, Request{}, nil, nil, nil)
+	if result != nil || err == nil || err.Error() != "Pi worker closed stdout without a result" {
+		t.Fatalf("got result=%+v, err=%v, want EOF without a result", result, err)
 	}
 }
 

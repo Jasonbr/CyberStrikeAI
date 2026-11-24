@@ -2,6 +2,7 @@ package agentruntime
 
 import (
 	"bufio"
+	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
@@ -156,10 +157,15 @@ func (p Pi) Run(ctx context.Context, req Request, execute ToolExecutor, emit fun
 	go func() {
 		scanner := bufio.NewScanner(stdout)
 		scanner.Buffer(make([]byte, 64*1024), maxRecordBytes+1)
-		for scanner.Scan() {
+		for line := 1; scanner.Scan(); line++ {
+			data := scanner.Bytes()
 			var r record
-			if err := json.Unmarshal(scanner.Bytes(), &r); err != nil {
-				readDone <- fmt.Errorf("invalid Pi protocol JSON: %w", err)
+			if err := json.Unmarshal(data, &r); err != nil {
+				if len(bytes.TrimSpace(data)) == 0 {
+					readDone <- fmt.Errorf("blank Pi protocol line %d", line)
+				} else {
+					readDone <- fmt.Errorf("invalid Pi protocol JSON on line %d: %w", line, err)
+				}
 				return
 			}
 			select {
@@ -187,7 +193,10 @@ func (p Pi) Run(ctx context.Context, req Request, execute ToolExecutor, emit fun
 			return nil, errors.New("Pi runtime protocol mismatch")
 		}
 	case err := <-readDone:
-		return nil, fmt.Errorf("Pi worker exited before handshake: %v", err)
+		if err != nil {
+			return nil, fmt.Errorf("read Pi worker handshake: %w", err)
+		}
+		return nil, errors.New("Pi worker closed stdout before handshake")
 	case <-readyTimeout.C:
 		return nil, errors.New("Pi worker startup timeout")
 	case <-ctx.Done():
@@ -295,12 +304,15 @@ func (p Pi) Run(ctx context.Context, req Request, execute ToolExecutor, emit fun
 				return nil, fmt.Errorf("unexpected Pi record: %s", r.Type)
 			}
 		case err := <-readDone:
-			// All queued protocol records precede EOF; process them before interpreting exit.
+			// Drain records queued before the reader reported EOF or an error.
 			if len(incoming) > 0 {
 				readDone <- err
 				continue
 			}
-			return nil, fmt.Errorf("Pi worker exited without a result: %v", err)
+			if err != nil {
+				return nil, fmt.Errorf("read Pi worker output: %w", err)
+			}
+			return nil, errors.New("Pi worker closed stdout without a result")
 		case <-ctxDone:
 			ctxDone = nil
 			_ = write(map[string]any{"type": "cancel"})
