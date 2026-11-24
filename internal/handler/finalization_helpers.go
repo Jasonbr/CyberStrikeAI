@@ -168,7 +168,7 @@ func finalizationBlockedMessage(d agentfinalizer.Decision) string {
 	case agentfinalizer.ReasonPendingToolsCancelled:
 		notice = "收尾时取消了仍在运行的工具，任务未完成。"
 	case multiagent.ReasonUnfinishedPlan:
-		notice = "本轮执行计划仍有未完成的步骤。"
+		notice = "本轮计划仍有标记为「待执行」或「进行中」的步骤，最终回复暂未交付。请核对计划中的步骤状态。"
 	case multiagent.ReasonModelOutputTruncated:
 		notice = "模型输出达到长度上限，本轮回复未完成。"
 	default:

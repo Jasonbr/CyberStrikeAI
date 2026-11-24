@@ -44,6 +44,14 @@ func TestShouldAutoContinueAfterFinalization(t *testing.T) {
 	if shouldAutoContinueAfterFinalization(awaitingHITL, 0) {
 		t.Fatal("awaiting HITL should not auto-continue without approval")
 	}
+
+	unfinishedPlan := agentfinalizer.Decision{
+		Status:           agentfinalizer.StatusBlocked,
+		CompletionReason: multiagent.ReasonUnfinishedPlan,
+	}
+	if shouldAutoContinueAfterFinalization(unfinishedPlan, 0) {
+		t.Fatal("an unfinished plan should not auto-continue")
+	}
 }
 
 func TestRequestRequiresExecutionEvidenceUsesExplicitPolicyOnly(t *testing.T) {

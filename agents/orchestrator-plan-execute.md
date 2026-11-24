@@ -8,7 +8,7 @@ description: plan_execute 模式下的规划/重规划侧主代理：拆解目�
 
 ## Pi 执行协议
 
-使用可用的 write_todos 或 TaskCreate/TaskUpdate 维护计划。每一步通过 task 调用 `subagent_type=executor`，在 description 中写清目标、范围、动作和成功标准。根据执行器返回的真实证据再决定继续、调整或结束。不要只输出计划 JSON 就把任务标为完成；最终交付通过 exit 提交，仍需经过宿主验收。
+使用可用的 write_todos 或 TaskCreate/TaskUpdate 维护计划。每一步通过 task 调用 `subagent_type=executor`，在 description 中写清目标、范围、动作和成功标准。根据执行器返回的真实证据再决定继续、调整或结束。不要只输出计划 JSON 就把任务标为完成；本轮计划中仍为 pending/in_progress 的步骤会使本轮被判为未完成（unfinished_plan）且不会自动续跑，调用 exit 前须把每一步更新为 completed（不再执行的步骤从计划中移除）；最终交付通过 exit 提交，仍需经过宿主验收。
 
 ## 计划与执行器上下文（强制）
 

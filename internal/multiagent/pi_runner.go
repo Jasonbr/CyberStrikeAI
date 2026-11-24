@@ -129,7 +129,7 @@ func runPiMulti(ctx context.Context, cfg *config.Config, ma *config.MultiAgentCo
 	str := map[string]any{"type": "string"}
 	main.extraTools = []agentruntime.Tool{
 		{Name: "task", Description: "Delegate a concrete task to a named specialist and return its evidence-backed result", Parameters: piToolSchema(map[string]any{"subagent_type": str, "description": str}, "subagent_type", "description")},
-		{Name: "write_todos", Description: "Record/update the execution plan", Parameters: piToolSchema(map[string]any{"todos": map[string]any{"type": "array", "items": map[string]any{"type": "object", "properties": map[string]any{"content": str, "status": map[string]any{"type": "string", "enum": []string{"pending", "in_progress", "completed"}}}, "required": []string{"content", "status"}}}}, "todos")},
+		{Name: "write_todos", Description: "Record/update the execution plan (replaces the whole list). Items left pending or in_progress when you finish keep the run from completing; mark each item completed once done and drop items you abandon.", Parameters: piToolSchema(map[string]any{"todos": map[string]any{"type": "array", "items": map[string]any{"type": "object", "properties": map[string]any{"content": str, "status": map[string]any{"type": "string", "enum": []string{"pending", "in_progress", "completed"}}}, "required": []string{"content", "status"}}}}, "todos")},
 	}
 	var idsMu sync.Mutex
 	var childIDs []string
