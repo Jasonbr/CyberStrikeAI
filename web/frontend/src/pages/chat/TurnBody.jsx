@@ -29,14 +29,19 @@ function ReasoningBlock({ block, defaultOpen }) {
     );
 }
 
-function ToolBlock({ block }) {
+function ToolBlock({ block, index, total }) {
+    const { t } = useI18n();
     const meta = STATUS_TAG[block.status] || STATUS_TAG.running;
     const argsText = prettyJson(block.args);
     const resultText = block.result || '';
     const hasBody = Boolean(argsText || resultText);
+    const name = block.toolName || t('chat.unknownTool', null, '未知工具');
     const header = (
         <span className="chat-tool-head">
-            <span className="chat-tool-name">{block.agentName ? `${block.agentName} · ` : ''}{block.toolName || '未知工具'}</span>
+            <span className="chat-tool-name">
+                {block.agentName ? `${block.agentName} · ` : ''}
+                {t('chat.callTool', { name, index, total }, `调用工具: ${name} (${index}/${total})`)}
+            </span>
             <Tag size="small" color={meta.color} shape="circle">{meta.label}</Tag>
         </span>
     );
@@ -134,6 +139,8 @@ export default function TurnBody({
     const { t } = useI18n();
     const list = Array.isArray(blocks) ? blocks : [];
     const body = text || '';
+    const toolCount = list.filter(block => block.kind === 'tool').length;
+    let toolIndex = 0;
     return (
         <div className="chat-turn-body">
             {list.map(block => {
@@ -141,7 +148,8 @@ export default function TurnBody({
                     return <ReasoningBlock key={block.id} block={block} defaultOpen={openReasoning} />;
                 }
                 if (block.kind === 'tool') {
-                    return <ToolBlock key={block.id} block={block} />;
+                    toolIndex += 1;
+                    return <ToolBlock key={block.id} block={block} index={toolIndex} total={toolCount} />;
                 }
                 if (block.kind === 'iteration') {
                     return (

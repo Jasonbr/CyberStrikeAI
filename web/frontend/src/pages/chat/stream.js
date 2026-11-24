@@ -49,6 +49,7 @@ export function createLiveState({ conversationId = '', id } = {}) {
         status: 'streaming',
         text: '',
         blocks: [],
+        toolsByCallId: new Map(),
         events: [],
         error: '',
         notice: '',
@@ -104,30 +105,29 @@ function upsertReasoning(state, streamId, kind = 'thinking') {
     return block;
 }
 
-function upsertTool(state, data) {
-    const toolCallId = str(data.toolCallId);
-    let tool = null;
-    if (toolCallId) {
-        tool = state.blocks.find(item => item.kind === 'tool' && item.toolCallId === toolCallId);
+function toolArgumentsFromData(data) {
+    const parsed = asObject(data.argumentsObj);
+    if (parsed && Object.keys(parsed).length) return parsed;
+    const args = data.arguments ?? data.argumentsObj ?? null;
+    if (typeof args !== 'string') return args;
+    if (!args.trim()) return null;
+    try {
+        return JSON.parse(args);
+    } catch {
+        return args;
     }
-    if (!tool) {
-        tool = {
-            kind: 'tool',
-            id: nextKey(state, 'tool'),
-            toolCallId,
-            toolName: str(data.toolName) || '未知工具',
-            args: null,
-            result: '',
-            status: 'running',
-            processDetailId: str(data.processDetailId),
-            agentName: str(data.agentName)
-        };
-        state.blocks.push(tool);
+}
+
+function matchToolResult({ blocks, toolsByCallId }, { toolCallId, toolName, agentName }) {
+    const sameAgent = block => !agentName || !block.agentName || block.agentName === agentName;
+    const matches = toolsByCallId.get(toolCallId)?.filter(sameAgent);
+    if (matches?.length) {
+        return matches.find(block => !block.hasResult) || matches[matches.length - 1];
     }
-    if (data.toolName && (tool.toolName === '未知工具' || !tool.toolName)) tool.toolName = str(data.toolName);
-    if (data.agentName && !tool.agentName) tool.agentName = str(data.agentName);
-    if (data.processDetailId && !tool.processDetailId) tool.processDetailId = str(data.processDetailId);
-    return tool;
+    if (!toolName) return null;
+    // Older records may omit a call ID on one or both events.
+    return blocks.find(block => block.kind === 'tool' && !block.hasResult && block.toolName === toolName
+        && sameAgent(block) && (!toolCallId || !block.toolCallId));
 }
 
 function toolStatusFromData(data) {
@@ -137,6 +137,48 @@ function toolStatusFromData(data) {
     if (explicit === 'blocked') return 'blocked';
     if (data.isError === true || data.success === false) return 'failed';
     return 'success';
+}
+
+function addToolEvent(timeline, type, data, message, key, processDetailId) {
+    const identity = {
+        toolCallId: str(data.toolCallId),
+        toolName: str(data.toolName),
+        agentName: str(data.agentName)
+    };
+    const args = toolArgumentsFromData(data);
+    const isResult = type === 'tool_result';
+    let tool = isResult ? matchToolResult(timeline, identity) : null;
+    if (!tool) {
+        tool = {
+            kind: 'tool',
+            id: key('tool'),
+            toolCallId: '',
+            toolName: identity.toolName,
+            agentName: identity.agentName,
+            args,
+            result: '',
+            status: 'running',
+            processDetailId: str(processDetailId),
+            hasResult: false
+        };
+        timeline.blocks.push(tool);
+    }
+    if (identity.toolCallId && !tool.toolCallId) {
+        tool.toolCallId = identity.toolCallId;
+        const matches = timeline.toolsByCallId.get(tool.toolCallId);
+        if (matches) matches.push(tool);
+        else timeline.toolsByCallId.set(tool.toolCallId, [tool]);
+    }
+    if (!isResult) return;
+
+    tool.hasResult = true;
+    tool.toolName ||= identity.toolName;
+    tool.agentName ||= identity.agentName;
+    tool.status = toolStatusFromData(data);
+    if (args !== null && (tool.args === null || (asObject(tool.args) && !Object.keys(tool.args).length))) {
+        tool.args = args;
+    }
+    tool.result = prettyJson(data.resultPreview ?? data.result ?? data.error ?? message, 8000);
 }
 
 /**
@@ -225,18 +267,10 @@ export function applyStreamEvent(state, event) {
             else if (data.finalizable === true) state.finalizable = true;
             break;
         }
-        case 'tool_call': {
-            const tool = upsertTool(state, data);
-            tool.args = data.argumentsObj !== undefined ? data.argumentsObj : (data.arguments !== undefined ? data.arguments : tool.args);
+        case 'tool_call':
+        case 'tool_result':
+            addToolEvent(state, type, data, event.message, prefix => nextKey(state, prefix), data.processDetailId);
             break;
-        }
-        case 'tool_result': {
-            const tool = upsertTool(state, data);
-            tool.status = toolStatusFromData(data);
-            const preview = data.resultPreview !== undefined ? data.resultPreview : data.result;
-            tool.result = truncateText(preview !== undefined && preview !== null ? preview : event.message, 8000);
-            break;
-        }
         case 'tool_calls_detected':
             pushNote(state, { title: '🔧 检测到工具调用', message: event.message, data });
             break;
@@ -342,6 +376,7 @@ export const LIVE_STATUS_META = {
 /** 历史消息的过程详情 → 统一渲染块（与流式块的字段保持一致）。 */
 export function buildHistoryBlocks(message) {
     const blocks = [];
+    const timeline = { blocks, toolsByCallId: new Map() };
     let seq = 0;
     const key = prefix => {
         seq += 1;
@@ -354,8 +389,6 @@ export function buildHistoryBlocks(message) {
     }
 
     const details = Array.isArray(message?.processDetails) ? message.processDetails : [];
-    const toolIndex = new Map();
-
     details.forEach(detail => {
         const eventType = str(detail?.eventType);
         const data = asObject(detail?.data) || {};
@@ -387,46 +420,10 @@ export function buildHistoryBlocks(message) {
                 });
                 break;
             }
-            case 'tool_call': {
-                const toolCallId = str(data.toolCallId);
-                const tool = {
-                    kind: 'tool',
-                    id: key('tool'),
-                    toolCallId,
-                    toolName: str(data.toolName) || '未知工具',
-                    args: data.argumentsObj !== undefined ? data.argumentsObj : (data.arguments !== undefined ? data.arguments : null),
-                    result: '',
-                    status: 'running',
-                    processDetailId: str(detail?.id),
-                    agentName: str(data.agentName)
-                };
-                if (toolCallId) toolIndex.set(toolCallId, tool);
-                blocks.push(tool);
+            case 'tool_call':
+            case 'tool_result':
+                addToolEvent(timeline, eventType, data, text, key, detail?.id);
                 break;
-            }
-            case 'tool_result': {
-                const toolCallId = str(data.toolCallId);
-                let tool = toolCallId ? toolIndex.get(toolCallId) : null;
-                if (!tool) {
-                    tool = {
-                        kind: 'tool',
-                        id: key('tool'),
-                        toolCallId,
-                        toolName: str(data.toolName) || '未知工具',
-                        args: null,
-                        result: '',
-                        status: 'running',
-                        processDetailId: '',
-                        agentName: str(data.agentName)
-                    };
-                    if (toolCallId) toolIndex.set(toolCallId, tool);
-                    blocks.push(tool);
-                }
-                tool.status = toolStatusFromData(data);
-                const preview = data.resultPreview !== undefined ? data.resultPreview : data.result;
-                tool.result = truncateText(preview !== undefined && preview !== null ? preview : text, 8000);
-                break;
-            }
             case 'planning': {
                 if (!text.trim()) break;
                 blocks.push({ kind: 'note', id: key('note'), title: '📝 规划', message: truncateText(text, 4000), tone: 'info', data: null });
