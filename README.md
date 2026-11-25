@@ -11,7 +11,9 @@
 
 CyberStrikeAI is a cybersecurity agent workbench built with **Go + Pi**. Run tasks through chat or manage supplied task lists in batch queues. Agents call tools and record results and evidence.
 
-This repository is maintained by **Sycun**, building on [AIPentest/CyberStrikeAI](https://github.com/AIPentest/CyberStrikeAI) with the upstream history, license, and copyright notices preserved. Create a batch queue from **Task Management → New task**.
+This repository is an **independent maintenance fork** maintained by **Jasonbr**, integrating both [AIPentest/CyberStrikeAI](https://github.com/AIPentest/CyberStrikeAI) (official upstream) and [Sycun/CyberStrikeAI](https://github.com/Sycun/CyberStrikeAI) (active community maintainer) into a single complete branch. Upstream history, license, and copyright notices are preserved.
+
+The `maintenance` branch is the primary branch — it contains all commits from both upstreams merged together, making it the most complete CyberStrikeAI codebase available.
 
 [Quick start](#quick-start) · [Task management](#delegation) · [Capabilities](#capabilities) · [Architecture](#architecture) · [Documentation](#documentation) · [Feedback](#contributing)
 
