@@ -5080,9 +5080,12 @@ func (h *OpenAPIHandler) GetOpenAPISpec(c *gin.Context) {
 								"schema": map[string]interface{}{
 									"type": "object",
 									"properties": map[string]interface{}{
-										"base_url": map[string]interface{}{"type": "string", "description": "本次测试的 API 基地址，须包含 http:// 或 https://"},
-										"api_key":  map[string]interface{}{"type": "string", "description": "本次测试的 API 密钥；空或 ******** 沿用已保存密钥"},
-										"model":    map[string]interface{}{"type": "string", "description": "本次测试的模型"},
+										"audit_backend": map[string]interface{}{"type": "string", "description": "本次测试的审计后端（openai 或 typesafe），省略则沿用已保存值"},
+										"provider":      map[string]interface{}{"type": "string", "description": "本次测试的聊天协议提供商（空字符串继承主模型，或 openai_compatible / claude）"},
+										"base_url":      map[string]interface{}{"type": "string", "description": "本次测试的 API 基地址，须包含 http:// 或 https://"},
+										"api_key":       map[string]interface{}{"type": "string", "description": "本次测试的 API 密钥；空或 ******** 沿用已保存密钥"},
+										"model":         map[string]interface{}{"type": "string", "description": "本次测试的模型"},
+										"clear_api_key": map[string]interface{}{"type": "boolean", "description": "为 true 时按清除独立审计密钥（继承主模型密钥）测试"},
 									},
 								},
 							},
