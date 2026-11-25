@@ -27,12 +27,9 @@ jobs:
       - name: Authentication and update session handoff
         run: go test -race ./internal/security -run '^(TestAuthManager|TestAttachRBACStore|TestRevokeRoleSessions|TestPublishSession|TestRestartHandoff)'
       - run: go build ./...
-      - name: Frontend build and SPA artifacts
+      - name: Frontend regression tests
         shell: bash
-        run: |
-          npm ci --prefix web/frontend
-          npm run --prefix web/frontend build
-          go test ./internal/app -run TestSPA -count=1
+        run: node --test web/frontend/tests/*.test.mjs
       - name: Shell syntax
         shell: bash
         run: bash -n run.sh upgrade.sh

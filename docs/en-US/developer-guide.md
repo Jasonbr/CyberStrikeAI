@@ -19,7 +19,7 @@ internal/knowledge/      indexing and retrieval
 internal/c2/             built-in C2
 internal/project/        project fact blackboard
 web/static/              frontend JS/CSS/assets
-web/templates/           HTML templates
+web/frontend/            React + Semi Design source
 tools/                   YAML command tools
 roles/                   role YAML
 agents/                  multi-agent Markdown definitions
@@ -33,7 +33,7 @@ docs/                    documentation
 go run ./cmd/server --config config.yaml
 ```
 
-The frontend is static. Most JS/CSS/template changes only require a browser refresh.
+After changing the frontend, run `npm ci --prefix web/frontend` and `npm run --prefix web/frontend build`. Go serves the output from `web/static/app/`.
 
 ## One-Click Update: Letting an Installation Update Its Own Source
 
@@ -221,7 +221,7 @@ Built-in tools should define clear input schemas, handle timeouts and errors, an
 
 ## Frontend Changes
 
-Use existing helpers such as `apiFetch`, modal utilities, notifications, and i18n. Update both `web/static/i18n/zh-CN.json` and `web/static/i18n/en-US.json` for new visible text.
+Reuse the HTTP client in `src/lib/http.js`, the shared UI components and the translation hook. Update both `web/static/i18n/zh-CN.json` and `web/static/i18n/en-US.json` for new visible text.
 
 Avoid putting secrets or provider keys in frontend code.
 

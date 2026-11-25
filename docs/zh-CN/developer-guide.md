@@ -17,7 +17,7 @@ internal/knowledge/      知识库索引与检索
 internal/c2/             内置 C2
 internal/project/        项目事实黑板
 web/static/              前端 JS/CSS/资源
-web/templates/           HTML 模板
+web/frontend/            React + Semi Design 源码
 tools/                   命令工具 YAML
 roles/                   角色 YAML
 agents/                  多代理 Markdown 定义
@@ -31,7 +31,7 @@ docs/                    项目文档
 go run ./cmd/server --config config.yaml
 ```
 
-前端是静态页面，模板在 `web/templates/`，JS/CSS 在 `web/static/`。修改后刷新浏览器即可验证，多数场景不需要单独前端构建。
+前端源码在 `web/frontend/`。运行 `npm ci --prefix web/frontend` 安装依赖，用 `npm run --prefix web/frontend build` 构建，再刷新页面验证。
 
 ## 路由
 
@@ -205,7 +205,7 @@ Skill 放在 `skills/<name>/SKILL.md`。用于提供专题能力、流程说明�
 
 前端代码按功能拆分在 `web/frontend/src/pages/`。新增页面或模块时：
 
-- 复用现有 `apiFetch`、modal、通知、i18n 工具。
+- 复用 `src/lib/http.js`、共享 UI 组件和翻译函数。
 - 同步更新 `web/static/i18n/zh-CN.json` 和 `en-US.json`。
 - 避免把敏感 Key 放到前端。
 - 高风险按钮要有确认和清晰状态反馈。

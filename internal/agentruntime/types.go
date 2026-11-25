@@ -55,6 +55,11 @@ type Image struct {
 	Data     []byte `json:"data"`
 }
 
+type Image struct {
+	MIMEType string `json:"mimeType"`
+	Data     []byte `json:"data"`
+}
+
 type Request struct {
 	NativeWorkflow     *NativeWorkflow `json:"nativeWorkflow,omitempty"`
 	GenerateOnly       bool            `json:"generateOnly,omitempty"`

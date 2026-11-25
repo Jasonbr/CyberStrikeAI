@@ -52,7 +52,7 @@ go build -o cyberstrike-ai ./cmd/server
 ./cyberstrike-ai --config config.yaml
 ```
 
-The binary still needs `web/templates`, `web/static`, and the runtime resource directories.
+The binary still needs `web/static` (including the built app) and the runtime resource directories.
 
 ## HTTPS and Reverse Proxy
 
