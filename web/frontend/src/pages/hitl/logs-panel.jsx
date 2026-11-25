@@ -152,7 +152,9 @@ export default function LogsPanel({ canWrite, detailId, onOpenDetail, onCloseDet
         {
             title: t('hitl.colTool', null, '工具'),
             dataIndex: 'toolName',
-            render: value => <span className="hitl-mono">{value || '—'}</span>
+            width: 220,
+            ellipsis: true,
+            render: value => <span className="hitl-mono hitl-ellipsis" title={value || ''}>{value || '—'}</span>
         },
         {
             title: t('hitl.colConversation', null, '会话'),
@@ -230,6 +232,7 @@ export default function LogsPanel({ canWrite, detailId, onOpenDetail, onCloseDet
                 loading={list.loading}
                 pagination={pagination}
                 size="small"
+                scroll={{ x: 1280 }}
                 emptyText={t('hitl.logsEmpty', null, '暂无审批日志')}
                 rowSelection={{
                     selectedRowKeys: selected,
