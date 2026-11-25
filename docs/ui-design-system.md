@@ -13,7 +13,7 @@
 ## 颜色与主题
 
 品牌主色 `#3266e3`（暗色 `#81a7ff`），通过覆盖 `--semi-color-primary` 等变量接入 Semi 主题，
-暗色由 `body[theme-mode="dark"]` 驱动，偏好保存在 `localStorage['cyberstrike-theme']`（system/light/dark）。
+暗色由 `body[theme-mode="dark"]` 驱动，偏好保存在 `localStorage['secai-theme']`（system/light/dark）。
 
 ## 组件约定
 

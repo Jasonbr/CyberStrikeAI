@@ -34,7 +34,7 @@ mkdir -p /opt/SecAI
 2. 放置二进制和资源目录：
 
 ```text
-cyberstrike-ai
+secai-ai
 web/
 tools/
 roles/

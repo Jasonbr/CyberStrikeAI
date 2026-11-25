@@ -6,7 +6,7 @@
   深链接（会话、漏洞、项目、测评、设置分区、MCP 执行、HITL 审批）保持可分享。
 - 服务端不再渲染业务模板：`GET /` 直接返回 `web/static/app/index.html`，`/api-docs` 302 到 `/#/api-docs`，
   API 文档改为应用内 OpenAPI 浏览器（含在线调试）。
-- 复用既有 REST 接口、`cyberstrike-auth` 会话令牌、`cyberstrike-theme` 主题偏好与 `web/static/i18n` 词条；
+- 复用既有 REST 接口、`secai-auth` 会话令牌、`secai-theme` 主题偏好与 `web/static/i18n` 词条；
   新增 `src/lib/http.js` 统一注入令牌、错误与 SSE 解析，`components/ui.jsx` 统一页面骨架、表格、指标卡、
   Markdown/JSON 视图与抽屉。
 - 30 个业务页面 + API 文档全部由 React 组件实现，覆盖对话流式回复与内联审批、深度测评图谱与验收、
@@ -106,7 +106,7 @@
 
 - 默认 Agent 运行时迁移为 Pi 1.5.2：Go 工具网关继续处理角色、审批、监控与证据；聊天及子代理接入 Pi。新增按源码指纹发布的 Node Worker、流式协议、会话恢复和原生工具检索。部署需 Node.js >=22.19；已删除 Eino 内核、模型适配、桥接和全部依赖，运行时仅支持 Pi。
 - Workflow 改用原生 DAG 与版本化检查点，知识库改用自身文档、切分、Embedding 和检索组件。旧 Eino Workflow 检查点无法由新版直接恢复，升级前需完成或导出旧任务，详见 [Pi 迁移说明](docs/zh-CN/pi-runtime.md)。
-- 个人仓库正式命名为 `Sycun/CyberStrikeAI`，原上游贡献 fork 改为 `Sycun/CyberStrikeAI-upstream-fork`。新增任务接单、阶段汇报与主动请示的设计调研文档（尚未作为产品功能上线）。
+- 个人仓库正式命名为 `Sycun/SecAIAI`，原上游贡献 fork 改为 `Sycun/SecAIAI-upstream-fork`。新增任务接单、阶段汇报与主动请示的设计调研文档（尚未作为产品功能上线）。
 
 - AI 渠道支持自定义 HTTP 请求头、环境变量和会话 ID 占位符；保存后的鉴权头可安全用于连接测试，独立审计身份隔离主渠道请求头，自定义头不会跟随跨源重定向。
 - 系统设置新增代理二级菜单，提供固定出口、代理池、最短切换间隔及凭证脱敏；配置仅注入后续 HTTP 工具进程，不影响 Kali 其他工具和模型 API。`http-framework-test` 新增可选代理池：支持静态/结构化代理列表与供应商接口、粘性/轮询策略、供应商故障静态回退、失败冷却及有界切换；仅自动重放 GET/HEAD/OPTIONS，遵守 429 Retry-After，切换失败时返回响应或错误且不回退直连。附中英文指南与本地 HTTP/HTTPS/SOCKS5 回归测试（#357）。

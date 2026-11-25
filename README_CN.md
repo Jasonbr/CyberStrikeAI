@@ -66,8 +66,8 @@ bash run.sh --http
 
 ```bash
 bash scripts/build-pi-runtime.sh
-go build -o cyberstrike-ai ./cmd/server
-./cyberstrike-ai -config config.yaml --http
+go build -o secai-ai ./cmd/server
+./secai-ai -config config.yaml --http
 ```
 
 部署需要运行时源码及匹配的 Pi Worker 构建包，或在目标机器重新构建；只复制 Go 二进制不足以运行智能体。Python 工具依赖需另行准备。详见 [Pi 运行时说明](docs/zh-CN/pi-runtime.md)。
@@ -119,8 +119,8 @@ go build -o cyberstrike-ai ./cmd/server
 
 | 集成 | 使用方式 | 文档与下载 |
 | --- | --- | --- |
-| Burp Suite | 将选定 HTTP 请求交给 SecAI 分析 | [安装说明](plugins/burp-suite/cyberstrikeai-burp-extension/README.zh-CN.md) · [JAR](plugins/burp-suite/cyberstrikeai-burp-extension/dist/cyberstrikeai-burp-extension.jar) |
-| Chrome / Edge | 在 DevTools 的 SecAI 标签页捕获并发送请求 | [安装说明](plugins/browser-extension/cyberstrikeai-browser-extension/README.zh-CN.md) · [ZIP](plugins/browser-extension/cyberstrikeai-browser-extension/dist/cyberstrikeai-browser-extension.zip) |
+| Burp Suite | 将选定 HTTP 请求交给 SecAI 分析 | [安装说明](plugins/burp-suite/secaiai-burp-extension/README.zh-CN.md) · [JAR](plugins/burp-suite/secaiai-burp-extension/dist/secaiai-burp-extension.jar) |
+| Chrome / Edge | 在 DevTools 的 SecAI 标签页捕获并发送请求 | [安装说明](plugins/browser-extension/secaiai-browser-extension/README.zh-CN.md) · [ZIP](plugins/browser-extension/secaiai-browser-extension/dist/secaiai-browser-extension.zip) |
 
 <details>
 <summary><strong>查看工作台界面</strong></summary>

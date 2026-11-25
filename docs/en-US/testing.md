@@ -9,7 +9,7 @@ Testing SecAI means more than running Go tests. Agent, MCP, HITL, C2, WebShell, 
 ```bash
 go test ./internal/...
 go test ./cmd/...
-go build -o cyberstrike-ai ./cmd/server
+go build -o secai-ai ./cmd/server
 ```
 
 Run focused packages when working locally:

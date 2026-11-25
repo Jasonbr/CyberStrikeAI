@@ -44,7 +44,7 @@ func main() {
 		os.Exit(2)
 	}
 	if !*httpsBootstrap && !*httpBootstrap {
-		v := strings.TrimSpace(os.Getenv("CYBERSTRIKE_HTTPS"))
+		v := strings.TrimSpace(os.Getenv("SECAI_HTTPS"))
 		if v == "1" || strings.EqualFold(v, "true") || strings.EqualFold(v, "yes") {
 			*httpsBootstrap = true
 		}

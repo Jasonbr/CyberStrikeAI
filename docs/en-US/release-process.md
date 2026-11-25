@@ -54,7 +54,7 @@ SQLite migrations must be:
 go test ./internal/...
 go test ./cmd/...
 bash scripts/build-pi-runtime.sh
-go build -o cyberstrike-ai ./cmd/server
+go build -o secai-ai ./cmd/server
 ```
 
 Manual smoke:

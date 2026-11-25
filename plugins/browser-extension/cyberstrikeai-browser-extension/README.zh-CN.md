@@ -9,7 +9,7 @@ Chrome / Edge（Chromium）DevTools 扩展：在开发者工具中捕获 **Netwo
 ### 快速开始
 
 1. `chrome://extensions/` → 开发者模式 → **加载已解压的扩展程序**
-2. 选择目录：`plugins/browser-extension/cyberstrikeai-browser-extension/`
+2. 选择目录：`plugins/browser-extension/secaiai-browser-extension/`
 3. 打开目标页面 → **F12** → 顶部 Tab **SecAI**
 4. 填写 Host / Port / Username / Password → **Validate**（首次会请求访问服务器地址权限）
 5. 左侧选中捕获请求 → **Send** → 在 **Output** 查看 AI 结果
@@ -190,15 +190,15 @@ Burp 插件会信任自签名证书，浏览器扩展不能绕过 Chromium 的 T
 ### 打包发布
 
 ```bash
-bash plugins/browser-extension/cyberstrikeai-browser-extension/package.sh
-# → dist/cyberstrikeai-browser-extension.zip
+bash plugins/browser-extension/secaiai-browser-extension/package.sh
+# → dist/secaiai-browser-extension.zip
 ```
 
 图标从项目根 `images/logo.png` 生成：
 
 ```bash
 LOGO="images/logo.png"
-ICONS="plugins/browser-extension/cyberstrikeai-browser-extension/icons"
+ICONS="plugins/browser-extension/secaiai-browser-extension/icons"
 for size in 16 48 128; do
   sips -z $size $size "$LOGO" --out "$ICONS/icon${size}.png"
 done

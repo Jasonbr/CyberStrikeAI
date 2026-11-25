@@ -7,7 +7,7 @@ Chromium DevTools extension: capture Network traffic and send it to SecAI for AI
 ### Quick install
 
 1. `chrome://extensions/` → Developer mode → **Load unpacked**
-2. Select `plugins/browser-extension/cyberstrikeai-browser-extension/`
+2. Select `plugins/browser-extension/secaiai-browser-extension/`
 3. Open target page → **F12** → **SecAI** tab → **Validate**
 4. Select a captured request → **Send** → view **Output**
 
@@ -63,7 +63,7 @@ If Validate reports `cross-origin request denied`, upgrade and restart the SecAI
 
 ```bash
 bash package.sh
-# → dist/cyberstrikeai-browser-extension.zip
+# → dist/secaiai-browser-extension.zip
 ```
 
 ### Layout

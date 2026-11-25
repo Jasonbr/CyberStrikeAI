@@ -232,7 +232,7 @@ func (w *floatEmbedder) EmbedStrings(ctx context.Context, texts []string, opts .
 }
 
 func (w *floatEmbedder) GetType() string {
-	return "CyberStrikeKnowledgeEmbedder"
+	return "SecAIKnowledgeEmbedder"
 }
 
 func (w *floatEmbedder) IsCallbacksEnabled() bool {

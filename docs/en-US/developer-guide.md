@@ -50,7 +50,7 @@ disagree about why an update was refused.
 |---|---|
 | console | System settings -> One-click update (`#system-update`, the old deep link still works). **Update** starts a job the page polls. Supported installations switch to the newly built binary by default, and the page reloads once the service comes back. A rollback button sits below. |
 | REST | `GET /api/system/update` (state on disk, no network), `POST /api/system/update/check` (fetch, then report the gap), `POST /api/system/update/apply` (`202` with `job_id`, polled through `GET /api/system/update/job`), `POST /api/system/update/rollback` |
-| CLI | `./cyberstrike-ai -check-update`, `./cyberstrike-ai -update`, `./cyberstrike-ai -update-rollback`. The install root is the directory holding `--config`, or the current directory when `--config` was not given |
+| CLI | `./secai-ai -check-update`, `./secai-ai -update`, `./secai-ai -update-rollback`. The install root is the directory holding `--config`, or the current directory when `--config` was not given |
 
 Permissions are `update:read` (GET) and `update:apply` (the four mutating endpoints). `update:apply`
 additionally requires a global (`all` scope) session: one machine has one source tree, and an
@@ -63,7 +63,7 @@ From **the update source repository**: one address, the official repository
 **own default branch** (nothing about branches is configured, and "main" is not hardcoded), so an
 installation with no configuration at all still has exactly one answer to "where does an update come
 from". `upgrade.sh` is now a thin shell over the same implementation: when this directory is a git
-work tree it just calls `./cyberstrike-ai -update`.
+work tree it just calls `./secai-ai -update`.
 
 ### Changing the source (the update section of config.yaml)
 
@@ -135,11 +135,11 @@ version that lands is yours, and the result says so.
 
 ### Rollback
 
-`./cyberstrike-ai -update-rollback`, or the button on the page: `git reset --hard` back to the commit
-the update came from, the binary kept as `cyberstrike-ai.prev` is put back when that update swapped
+`./secai-ai -update-rollback`, or the button on the page: `git reset --hard` back to the commit
+the update came from, the binary kept as `secai-ai.prev` is put back when that update swapped
 one, and `.update-state.json` is removed. An update whose build failed never swapped a binary, so its
 rollback moves the source only - the binary on disk already belongs to the commit it returns to. It
-refuses when there is no update record (`no_state`), a swap is owed but no `cyberstrike-ai.prev` is
+refuses when there is no update record (`no_state`), a swap is owed but no `secai-ai.prev` is
 left (`no_binary`), a recorded commit is not in this repository (`bad_state`), the binary on disk is
 not the one the record pairs with that commit (`binary_changed`), **HEAD has moved since that update**
 (`moved_since_update` - a rollback undoes the update, not the work done after it), or source is
@@ -152,7 +152,7 @@ match the files on disk, recovery refuses to overwrite them.
 
 ### Switching to the new binary
 
-On macOS and Linux, when started from the `cyberstrike-ai` binary alongside its config, the console
+On macOS and Linux, when started from the `secai-ai` binary alongside its config, the console
 sends `restart: true` as soon as you click **One-Click Update**. After a successful build and binary swap, the service closes its
 application resources and executes the new binary with the same PID, arguments, environment and
 working directory. Installations that cannot switch in place return `400` on an explicit restart

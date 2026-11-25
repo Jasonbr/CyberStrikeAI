@@ -46,8 +46,8 @@ npm run --prefix web/frontend build
 ## 约定
 
 - 路由使用 hash：`#/dashboard`、`#/chat?conversation=<id>`、`#/vulnerabilities?id=<id>`，深链接可直接分享。
-- 会话令牌沿用 `localStorage['cyberstrike-auth']`，请求统一走 `src/lib/http.js`（自动附加 `Authorization`）。
-- 主题偏好沿用 `localStorage['cyberstrike-theme']`（system/light/dark），语言沿用 `localStorage['csai_lang']`，
+- 会话令牌沿用 `localStorage['secai-auth']`，请求统一走 `src/lib/http.js`（自动附加 `Authorization`）。
+- 主题偏好沿用 `localStorage['secai-theme']`（system/light/dark），语言沿用 `localStorage['csai_lang']`，
   词条复用 `web/static/i18n/*.json`。
 - 页面只能通过 `api` / `postStream` 访问 `/api`，不得直接 `fetch`；权限判断用 `useAuth().hasPermission(...)`。
 - 新增页面：在 `src/pages/<id>/index.jsx` 实现默认导出组件，并在 `src/pages/registry.js` 与 `src/lib/nav.js` 注册。

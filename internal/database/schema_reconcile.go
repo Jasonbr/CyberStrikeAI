@@ -266,7 +266,7 @@ func columnDefinitions(ddl string) (map[string]string, error) {
 }
 
 func openSchemaReference(schema string) (*sql.DB, error) {
-	reference, err := sql.Open("sqlite3", ":memory:")
+	reference, err := sql.Open("sqlite", ":memory:")
 	if err != nil {
 		return nil, err
 	}

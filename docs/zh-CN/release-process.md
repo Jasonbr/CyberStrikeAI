@@ -26,7 +26,7 @@ go test ./internal/...
 ```bash
 go test ./cmd/...
 bash scripts/build-pi-runtime.sh
-go build -o cyberstrike-ai ./cmd/server
+go build -o secai-ai ./cmd/server
 ```
 
 如果修改前端，手动验证：
@@ -41,12 +41,12 @@ go build -o cyberstrike-ai ./cmd/server
 
 ```bash
 bash scripts/build-pi-runtime.sh
-go build -o cyberstrike-ai ./cmd/server
+go build -o secai-ai ./cmd/server
 ```
 
 发布包应包含：
 
-- `cyberstrike-ai`
+- `secai-ai`
 - `web/static/`
 - `config.example.yaml` 示例。
 - `tools/`
@@ -159,7 +159,7 @@ SQLite 迁移要考虑：
 go test ./internal/...
 go test ./cmd/...
 bash scripts/build-pi-runtime.sh
-go build -o cyberstrike-ai ./cmd/server
+go build -o secai-ai ./cmd/server
 ```
 
 手动冒烟：

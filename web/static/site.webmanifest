@@ -1,6 +1,6 @@
 {
-  "name": "CyberStrikeAI",
-  "short_name": "CyberStrikeAI",
+  "name": "SecAI",
+  "short_name": "SecAI",
   "description": "AI 安全测试平台 WebUI",
   "start_url": "/",
   "scope": "/",

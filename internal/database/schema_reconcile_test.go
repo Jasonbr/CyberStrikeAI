@@ -11,7 +11,7 @@ import (
 
 func rawSchemaDB(t *testing.T) *DB {
 	t.Helper()
-	conn, err := sql.Open("sqlite3", ":memory:?_foreign_keys=1")
+	conn, err := sql.Open("sqlite", ":memory:?_foreign_keys=1")
 	if err != nil {
 		t.Fatal(err)
 	}

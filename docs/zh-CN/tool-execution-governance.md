@@ -264,7 +264,7 @@ security:
 服务启动时会真正创建并回收一个探测进程，验证权限和内核支持；也可在不启动 HTTP/MCP 服务的情况下单独运行：
 
 ```sh
-./cyberstrike-ai --check-process-isolation -config config.yaml
+./secai-ai --check-process-isolation -config config.yaml
 ```
 
 输出 `cgroup_v2`、`windows_job` 或 `process_group_watchdog`。运行/历史任务 API 的 `isolationBackend` 字段提供每轮实际采用的后端。systemd 的 `KillMode=control-group` 和失败重启为整个服务额外兜底；它与每任务 cgroup 配合使用。

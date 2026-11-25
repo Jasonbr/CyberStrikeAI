@@ -48,8 +48,8 @@ go run ./cmd/server --config config.yaml
 Binary build:
 
 ```bash
-go build -o cyberstrike-ai ./cmd/server
-./cyberstrike-ai --config config.yaml
+go build -o secai-ai ./cmd/server
+./secai-ai --config config.yaml
 ```
 
 The binary still needs `web/static` (including the built app) and the runtime resource directories.
@@ -80,16 +80,16 @@ proxy_set_header Connection "upgrade";
 ## Upgrading
 
 **Prefer the platform's own one-click update** (console System settings -> One-click update,
-`POST /api/system/update/apply`, or `./cyberstrike-ai -update` at a keyboard). It pulls the newest
+`POST /api/system/update/apply`, or `./secai-ai -update` at a keyboard). It pulls the newest
 commit of the **update source repository**'s default branch (the official repository
 `https://github.com/AIPentest/SecAI.git` by default; one setting points it at your own fork
 or a mirror): fetch, fast-forward, `go build`, atomic binary swap (the old binary is kept as
-`cyberstrike-ai.prev`), while operator content - `roles/ skills/ tools/ agents/ knowledge_base/
+`secai-ai.prev`), while operator content - `roles/ skills/ tools/ agents/ knowledge_base/
 data/ config.yaml` - is put aside and restored, and the result names every file it kept. When source
 is modified locally or the local history has diverged from the source it refuses and says why
 instead of forcing. See [the developer guide](developer-guide.md) for the full semantics.
 
-On macOS and Linux, when started from the `cyberstrike-ai` binary alongside its config, the console
+On macOS and Linux, when started from the `secai-ai` binary alongside its config, the console
 defaults to switching to the new binary after a successful build. The old service remains available
 during the build. Connections briefly drop at the switch. When the new service answers, the page
 reloads and reuses the current login session if it is still valid. Under **One-click update**, the
@@ -109,8 +109,8 @@ installation with one-click updates.
 `upgrade.sh` still works and is now a thin shell over that implementation, with two paths decided by
 the installation kind:
 
-- **git work tree**: calls `./cyberstrike-ai -update` directly (building
-  `go build -o cyberstrike-ai ./cmd/server` first when there is no binary yet, and failing with
+- **git work tree**: calls `./secai-ai -update` directly (building
+  `go build -o secai-ai ./cmd/server` first when there is no binary yet, and failing with
   instructions on installing Go when there is neither). `--check` inspects only, through
   `-check-update`.
 - **not a git work tree** (Release tarball install): only here does it fall back to downloading a
@@ -118,7 +118,7 @@ the installation kind:
   `--repo owner/name` or the `GITHUB_REPO` environment variable, and the built-in default is used only
   when neither is given - with a warning naming which repository the code is coming from.
   `config.yaml`, `data/`, `tools/`, `roles/`, `skills/`, `agents/`, `venv/` (skippable with
-  `--no-venv`) and the rollback points `.update-backup/`, `.update-state.json`, `cyberstrike-ai.prev`
+  `--no-venv`) and the rollback points `.update-backup/`, `.update-state.json`, `secai-ai.prev`
   are on the rsync keep list, so `--delete` cannot remove them.
 
 Recommended flow either way:
@@ -137,8 +137,8 @@ quick upgrades without compatibility risk; in production still back up first. Py
 
 ## Rollback
 
-The one-click update leaves its own rollback point: `./cyberstrike-ai -update-rollback`, or the button
-on the page, goes back to the commit before that update and puts `cyberstrike-ai.prev` back. It runs
+The one-click update leaves its own rollback point: `./secai-ai -update-rollback`, or the button
+on the page, goes back to the commit before that update and puts `secai-ai.prev` back. It runs
 only while HEAD is still the commit that update wrote, so work done afterwards is not discarded.
 Content that was put aside also survives under `.update-backup/<unique-backup>/`.
 

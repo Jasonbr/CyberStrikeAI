@@ -17,8 +17,8 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-const updateSessionsEnv = "CYBERSTRIKE_UPDATE_SESSIONS_FD"
-const updateActivationEnv = "CYBERSTRIKE_UPDATE_ACTIVATION"
+const updateSessionsEnv = "SECAI_UPDATE_SESSIONS_FD"
+const updateActivationEnv = "SECAI_UPDATE_ACTIVATION"
 
 // TakeUpdateActivation identifies the update that launched this process.
 // A fresh start by a supervisor has no activation ID.
@@ -54,7 +54,7 @@ func TakeUpdateSessionHandoff() *os.File {
 }
 
 func writeUpdateSessionHandoff(payload []byte) (*os.File, error) {
-	f, err := os.CreateTemp("", "cyberstrike-update-sessions-*")
+	f, err := os.CreateTemp("", "secai-update-sessions-*")
 	if err != nil {
 		return nil, err
 	}

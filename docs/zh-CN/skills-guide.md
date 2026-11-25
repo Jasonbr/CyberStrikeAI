@@ -18,7 +18,7 @@ skills/
     SKILL.md
   ssrf-testing/
     SKILL.md
-  cyberstrike-pi-demo/
+  secai-pi-demo/
     SKILL.md
     REFERENCE.md
     assets/

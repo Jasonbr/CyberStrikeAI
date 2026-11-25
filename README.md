@@ -68,8 +68,8 @@ After completing the configuration above, you can build the Pi worker and Go ser
 
 ```bash
 bash scripts/build-pi-runtime.sh
-go build -o cyberstrike-ai ./cmd/server
-./cyberstrike-ai -config config.yaml --http
+go build -o secai-ai ./cmd/server
+./secai-ai -config config.yaml --http
 ```
 
 A deployment needs the runtime source and a matching Pi worker bundle, or a fresh build on the destination machine. Copying only the Go binary is not enough to run agents. Prepare Python tool dependencies separately. See the [Pi runtime guide](docs/en-US/pi-runtime.md).
@@ -121,8 +121,8 @@ Specialized operations also include [WebShell](docs/en-US/webshell.md) and [C2](
 
 | Integration | Usage | Documentation and download |
 | --- | --- | --- |
-| Burp Suite | Send selected HTTP requests to SecAI for analysis | [Setup](plugins/burp-suite/cyberstrikeai-burp-extension/README.md) · [JAR](plugins/burp-suite/cyberstrikeai-burp-extension/dist/cyberstrikeai-burp-extension.jar) |
-| Chrome / Edge | Capture and send requests from the SecAI DevTools tab | [Setup](plugins/browser-extension/cyberstrikeai-browser-extension/README.md) · [ZIP](plugins/browser-extension/cyberstrikeai-browser-extension/dist/cyberstrikeai-browser-extension.zip) |
+| Burp Suite | Send selected HTTP requests to SecAI for analysis | [Setup](plugins/burp-suite/secaiai-burp-extension/README.md) · [JAR](plugins/burp-suite/secaiai-burp-extension/dist/secaiai-burp-extension.jar) |
+| Chrome / Edge | Capture and send requests from the SecAI DevTools tab | [Setup](plugins/browser-extension/secaiai-browser-extension/README.md) · [ZIP](plugins/browser-extension/secaiai-browser-extension/dist/secaiai-browser-extension.zip) |
 
 <details>
 <summary><strong>Explore the workbench</strong></summary>

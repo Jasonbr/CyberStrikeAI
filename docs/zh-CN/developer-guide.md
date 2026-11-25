@@ -56,7 +56,7 @@ go run ./cmd/server --config config.yaml
 |---|---|
 | 控制台 | 「系统设置 → 一键更新」（`#system-update` 老深链仍可用）。「一键更新」发起任务并轮询进度；支持自动切换的安装默认在构建成功后切到新二进制，页面在服务恢复后自动刷新；另有回滚按钮 |
 | REST | `GET /api/system/update`（磁盘现状，不联网）、`POST /api/system/update/check`（fetch 后报告差集）、`POST /api/system/update/apply`（`202` 返回 `job_id`，用 `GET /api/system/update/job` 轮询）、`POST /api/system/update/rollback` |
-| CLI | `./cyberstrike-ai -check-update`、`./cyberstrike-ai -update`、`./cyberstrike-ai -update-rollback`。安装目录 = `--config` 所在目录，未给 `--config` 时是当前目录 |
+| CLI | `./secai-ai -check-update`、`./secai-ai -update`、`./secai-ai -update-rollback`。安装目录 = `--config` 所在目录，未给 `--config` 时是当前目录 |
 
 权限是 `update:read`（GET）与 `update:apply`（四个写接口）。`update:apply` 还要求会话是 global（`all` scope）：
 一台机器只有一份源码，`assigned`/`own` scope 的账号不该能移动别人正在跑的代码。
@@ -66,7 +66,7 @@ go run ./cmd/server --config config.yaml
 从**更新源仓库**：一个仓库地址，默认就是官方仓库 `https://github.com/AIPentest/SecAI.git`；
 更新跟随该仓库**自己的默认分支**（不用配置分支，也不写死 main），所以对一套没做过任何配置的安装，
 「从哪更新」永远有一个明确答案。`upgrade.sh` 现在只是这条实现的薄壳：本目录是 git 工作树时它直接调
-`./cyberstrike-ai -update`。
+`./secai-ai -update`。
 
 ### 更换更新源（config.yaml 的 update 段）
 
@@ -129,10 +129,10 @@ update:
 
 ### 回滚
 
-`./cyberstrike-ai -update-rollback` 或页面按钮：`git reset --hard` 回到那次更新前的提交，
-换过二进制的那次会把 `cyberstrike-ai.prev` 放回原位，随后删除 `.update-state.json`。
+`./secai-ai -update-rollback` 或页面按钮：`git reset --hard` 回到那次更新前的提交，
+换过二进制的那次会把 `secai-ai.prev` 放回原位，随后删除 `.update-state.json`。
 编译失败的那次更新从没换过二进制，所以它的回滚只搬源码——磁盘上的二进制本来就属于要回去的那个提交。
-它会拒绝的情形：没有更新记录（`no_state`）、需要换回却没有留下 `cyberstrike-ai.prev`（`no_binary`）、
+它会拒绝的情形：没有更新记录（`no_state`）、需要换回却没有留下 `secai-ai.prev`（`no_binary`）、
 记录里的提交在本仓库不存在（`bad_state`）、磁盘上的二进制不是记录里与该提交配对的那一个（`binary_changed`）、
 **HEAD 自那次更新之后又动过**（`moved_since_update`：回滚只该撤到更新前，不该顺手抹掉之后的工作）、
 以及存在本地源码改动（`local_source_edits`）。
@@ -143,7 +143,7 @@ update:
 
 ### 切换到新二进制
 
-macOS/Linux 上，从配置文件同目录的 `cyberstrike-ai` 启动时，点击「一键更新」直接发送 `restart: true`，无需二次确认。
+macOS/Linux 上，从配置文件同目录的 `secai-ai` 启动时，点击「一键更新」直接发送 `restart: true`，无需二次确认。
 只有成功构建并换入二进制才会切换：服务先关闭应用资源，再用相同 PID、启动参数、环境和工作目录执行新二进制。
 不支持的启动方式不提供自动切换；REST 显式请求重启时返回 `400`。REST 不传该字段和 CLI 更新都只换磁盘文件。
 

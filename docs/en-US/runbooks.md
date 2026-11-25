@@ -34,7 +34,7 @@ mkdir -p /opt/SecAI
 2. Place binary and resources:
 
 ```text
-cyberstrike-ai
+secai-ai
 web/
 tools/
 roles/

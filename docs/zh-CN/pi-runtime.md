@@ -10,7 +10,7 @@ SecAI 仅使用 Pi 1.5.2（`@earendil-works/pi-coding-agent`、`pi-ai`），Go �
 
 ```sh
 bash scripts/build-pi-runtime.sh
-go build -o cyberstrike-ai ./cmd/server
+go build -o secai-ai ./cmd/server
 ```
 
 `run.sh` 和服务自更新的构建步骤都会准备 Pi。构建使用锁文件和 `npm ci --ignore-scripts`；发布到 `runtime/pi/.builds/<源码指纹>/` 后才会被选用。正在运行的 Worker 使用原来的依赖目录；源码回滚时选择对应旧指纹的包。缓存属于构建产物，不提交到 Git。部署时需保留运行时源码和已构建的匹配包，或在目标机器重新构建；只复制 Go 二进制不足以运行 Pi。

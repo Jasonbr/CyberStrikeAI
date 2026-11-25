@@ -111,13 +111,13 @@ func (p Pi) Run(ctx context.Context, req Request, execute ToolExecutor, emit fun
 	if node == "" {
 		node = "node"
 	}
-	scratchParent, err := os.MkdirTemp("", "cyberstrike-pi-host-")
+	scratchParent, err := os.MkdirTemp("", "secai-pi-host-")
 	if err != nil {
 		return nil, err
 	}
 	defer os.RemoveAll(scratchParent)
 	cmd := exec.Command(node, worker)
-	cmd.Env = append(os.Environ(), "CYBERSTRIKE_PI_TMP_PARENT="+scratchParent)
+	cmd.Env = append(os.Environ(), "SECAI_PI_TMP_PARENT="+scratchParent)
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
 		return nil, err

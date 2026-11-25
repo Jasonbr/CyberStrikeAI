@@ -10,8 +10,8 @@ import (
 	"time"
 )
 
-const guardianArg = "--cyberstrike-internal-process-guardian"
-const childArg = "--cyberstrike-internal-process-child"
+const guardianArg = "--secai-internal-process-guardian"
+const childArg = "--secai-internal-process-child"
 
 type watchRequest struct {
 	Op      string

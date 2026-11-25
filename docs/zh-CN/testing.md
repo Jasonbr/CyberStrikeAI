@@ -32,7 +32,7 @@ go test ./internal/handler
 ## 构建测试
 
 ```bash
-go build -o cyberstrike-ai ./cmd/server
+go build -o secai-ai ./cmd/server
 ```
 
 构建通过不代表功能正确，但能发现入口、依赖和静态类型问题。

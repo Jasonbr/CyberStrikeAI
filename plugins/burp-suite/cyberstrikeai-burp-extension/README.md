@@ -22,13 +22,13 @@ Requirements:
 #### Option A (recommended): Maven build (no need to locate Burp)
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/secaiai-burp-extension
 ./build-mvn.sh
 ```
 
 Output:
 
-- `dist/cyberstrikeai-burp-extension.jar`
+- `dist/secaiai-burp-extension.jar`
 
 #### Option B: Offline build with `build.sh` (needs Burp API jar)
 
@@ -43,13 +43,13 @@ mkdir -p lib
 2) Build:
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/secaiai-burp-extension
 ./build.sh
 ```
 
 Output:
 
-- `dist/cyberstrikeai-burp-extension.jar`
+- `dist/secaiai-burp-extension.jar`
 
 #### Option C: Gradle (optional)
 

@@ -10,7 +10,7 @@
     <script>
         (function () {
             try {
-                var stored = localStorage.getItem('cyberstrike-theme') || 'system';
+                var stored = localStorage.getItem('secai-theme') || 'system';
                 var dark = stored === 'dark' || (stored !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
                 document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
                 document.documentElement.setAttribute('data-theme-preference', stored);

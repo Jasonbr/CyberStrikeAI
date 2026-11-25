@@ -10,7 +10,7 @@ import (
 )
 
 const defaultRunRetryMaxBackoff = 30 * time.Second
-const modelOutputRecoveryKey = "_cyberstrike_model_output_recovery"
+const modelOutputRecoveryKey = "_secai_model_output_recovery"
 
 func transientRetryBackoff(attempt int, maxBackoff time.Duration) time.Duration {
 	if attempt < 0 {

@@ -71,8 +71,8 @@ go env -w GOPROXY=https://goproxy.cn,direct
 ## 构建二进制
 
 ```bash
-go build -o cyberstrike-ai ./cmd/server
-./cyberstrike-ai --config config.yaml
+go build -o secai-ai ./cmd/server
+./secai-ai --config config.yaml
 ```
 
 交付二进制时仍需要携带：
@@ -114,10 +114,10 @@ Nginx 示例：
 ```nginx
 server {
     listen 443 ssl http2;
-    server_name cyberstrike.example.com;
+    server_name secai.example.com;
 
-    ssl_certificate /etc/letsencrypt/live/cyberstrike.example.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/cyberstrike.example.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/secai.example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/secai.example.com/privkey.pem;
 
     client_max_body_size 200m;
 
@@ -148,7 +148,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/opt/SecAI
-ExecStart=/opt/SecAI/cyberstrike-ai --config /opt/SecAI/config.yaml
+ExecStart=/opt/SecAI/secai-ai --config /opt/SecAI/config.yaml
 Restart=on-failure
 RestartSec=5
 Environment=GIN_MODE=release
@@ -161,8 +161,8 @@ WantedBy=multi-user.target
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable --now cyberstrikeai
-sudo journalctl -u cyberstrikeai -f
+sudo systemctl enable --now secaiai
+sudo journalctl -u secaiai -f
 ```
 
 ## 数据与备份
@@ -181,16 +181,16 @@ SQLite 热备份时最好先停止服务，或至少复制 `*.db`、`*.db-wal`�
 ## 升级
 
 **优先用平台自带的「一键更新」**（控制台「系统设置 → 一键更新」、`POST /api/system/update/apply`、
-或键盘上的 `./cyberstrike-ai -update`）。它从**更新源仓库**（默认官方仓库
+或键盘上的 `./secai-ai -update`）。它从**更新源仓库**（默认官方仓库
 `https://github.com/AIPentest/SecAI.git`，可一处配置改成自己的二开或镜像）拉取该仓库默认分支的
-最新代码：fetch → 快进合并 → `go build` → 原子换二进制（旧的留作 `cyberstrike-ai.prev`），并把
+最新代码：fetch → 快进合并 → `go build` → 原子换二进制（旧的留作 `secai-ai.prev`），并把
 `roles/ skills/ tools/ agents/ knowledge_base/ data/ config.yaml` 等运维者内容先暂存再放回，结果里点名
 保留了哪些文件。本地源码有改动、或本地历史与更新源分叉时它会拒绝并说明原因，而不是硬来。
 构建失败或本机没有 Go 工具链时源码照样更新、二进制保持原样：欠编译会记在安装目录（`.update-build-pending`）
 并被页面标出，装好 go 后再点一次「一键更新」即补编译。
 细节见 [开发者指南](developer-guide.md) 的「一键更新」一节。
 
-在 macOS/Linux 上，从配置文件同目录的 `cyberstrike-ai` 启动时，点击「一键更新」后，控制台在构建成功时自动切换到新二进制。
+在 macOS/Linux 上，从配置文件同目录的 `secai-ai` 启动时，点击「一键更新」后，控制台在构建成功时自动切换到新二进制。
 构建期间旧服务继续提供服务；切换时连接会短暂中断，页面在新服务应答后自动刷新并沿用仍然有效的登录会话。
 刷新后可以在「一键更新」的「运行中的构建」字段核对当前服务的提交号。
 这一步不依赖 systemd 或 launchd；长期部署仍建议用守护进程做开机自启和异常恢复。通过 API 或命令行换过
@@ -204,14 +204,14 @@ SQLite 热备份时最好先停止服务，或至少复制 `*.db`、`*.db-wal`�
 
 `upgrade.sh` 仍然可用，它现在只是这条实现的薄壳，并按安装形态分两条路：
 
-- **本目录是 git 工作树**：直接调用 `./cyberstrike-ai -update`（还没有二进制时先
-  `go build -o cyberstrike-ai ./cmd/server` 再更新；两者都没有就明确报错并说明怎么装 Go）。
+- **本目录是 git 工作树**：直接调用 `./secai-ai -update`（还没有二进制时先
+  `go build -o secai-ai ./cmd/server` 再更新；两者都没有就明确报错并说明怎么装 Go）。
   `--check` 只检查不改动，走 `-check-update`。
 - **本目录不是 git 工作树**（Release tarball 安装）：才回落到"下载 Release 包 + `rsync --delete`"的老路径。
   此时源码仓库取自 `--repo owner/name` 或环境变量 `GITHUB_REPO`，两者都没给才用内置默认值，
   并且会打一行警告说明代码正从哪个仓库取。`config.yaml`、`data/`、`tools/`、`roles/`、`skills/`、
   `agents/`、`venv/`（`--no-venv` 可关闭）以及回滚点 `.update-backup/`、`.update-state.json`、
-  `cyberstrike-ai.prev` 都在 rsync 的保留名单里，不会被 `--delete` 顺手删掉。
+  `secai-ai.prev` 都在 rsync 的保留名单里，不会被 `--delete` 顺手删掉。
 
 推荐流程：
 
@@ -228,8 +228,8 @@ Python 依赖方面：`venv/` 由 `run.sh` 自动创建和管理，保留它就�
 
 ## 回滚
 
-一键更新自带回滚点：`./cyberstrike-ai -update-rollback` 或页面上的回滚按钮，会撤到那次更新前的提交并把
-`cyberstrike-ai.prev` 换回原位；它只在"HEAD 仍是那次更新写下的提交"时才执行，之后的工作不会被顺手抹掉。
+一键更新自带回滚点：`./secai-ai -update-rollback` 或页面上的回滚按钮，会撤到那次更新前的提交并把
+`secai-ai.prev` 换回原位；它只在"HEAD 仍是那次更新写下的提交"时才执行，之后的工作不会被顺手抹掉。
 被暂存过的内容也留在 `.update-backup/<唯一备份目录>/` 里。
 
 除此之外，回滚时同时恢复：

@@ -243,7 +243,7 @@ For Linux production, configure a dedicated systemd service with `Delegate=cpu m
 Startup probes actual process creation and cleanup before accepting requests. Run the probe without starting HTTP/MCP services:
 
 ```sh
-./cyberstrike-ai --check-process-isolation -config config.yaml
+./secai-ai --check-process-isolation -config config.yaml
 ```
 
 The result reports `cgroup_v2`, `windows_job`, or `process_group_watchdog`; task APIs expose the actual `isolationBackend`. Systemd's `KillMode=control-group` and restart policy add service-wide recovery.

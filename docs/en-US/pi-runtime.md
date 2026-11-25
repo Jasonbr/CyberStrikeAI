@@ -10,7 +10,7 @@ Node.js >=22.19 and the Go version in go.mod are required:
 
 ```sh
 bash scripts/build-pi-runtime.sh
-go build -o cyberstrike-ai ./cmd/server
+go build -o secai-ai ./cmd/server
 ```
 
 The launcher and self-update build prepare the worker. The new server also prepares a missing matching bundle at startup and checks the worker handshake before accepting requests. This covers the first upgrade from Eino, whose old updater only builds Go. Preparation requires Node.js >=22.19, npm and access to the locked npm dependencies; failures stop startup with an actionable error. An existing matching bundle starts without npm or dependency downloads. Dependency installation uses the lockfile with lifecycle scripts disabled. Complete bundles are published under `runtime/pi/.builds/<source fingerprint>`; running workers keep their original dependencies, and source rollback selects the corresponding old bundle. Retain the runtime sources and matching bundle when deploying, or rebuild on the destination. A Go binary alone is insufficient for Pi.

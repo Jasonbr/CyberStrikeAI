@@ -71,7 +71,7 @@ chmod 700 data
 生产环境使用独立系统用户运行：
 
 ```text
-cyberstrike-ai:cyberstrike-ai
+secai-ai:secai-ai
 ```
 
 避免 root 运行，除非明确需要绑定低端口或访问特殊资源。

@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mattn/go-sqlite3"
+	"modernc.org/sqlite"
 	"go.uber.org/zap"
 )
 
@@ -25,7 +25,7 @@ func TestSQLiteBeginReservesWriterWithoutBlockingReaders(t *testing.T) {
 			defer db.Close()
 			// A separate connection with no busy wait makes the lock assertion
 			// deterministic, without relying on goroutine scheduling or sleeps.
-			other, err := sql.Open("sqlite3", path+"?_busy_timeout=0")
+			other, err := sql.Open("sqlite", path+"?_busy_timeout=0")
 			if err != nil {
 				t.Fatal(err)
 			}

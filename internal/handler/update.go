@@ -184,13 +184,13 @@ func (h *UpdateHandler) GetStatus(c *gin.Context) {
 // SetBootHeader runs before auth on the validation route so a client can tell
 // a new boot from a revoked or expired session on the current boot.
 func (h *UpdateHandler) SetBootHeader(c *gin.Context) {
-	c.Header("X-CyberStrike-Boot-ID", h.bootID)
-	c.Header("X-CyberStrike-Build-Revision", h.buildRevision)
+	c.Header("X-SecAI-Boot-ID", h.bootID)
+	c.Header("X-SecAI-Build-Revision", h.buildRevision)
 	activationID := h.activationID
 	if activationID == "" {
 		activationID = "-"
 	}
-	c.Header("X-CyberStrike-Activation-ID", activationID)
+	c.Header("X-SecAI-Activation-ID", activationID)
 	c.Header("Cache-Control", "no-store")
 }
 

@@ -36,13 +36,13 @@
 编译打包：
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/secaiai-burp-extension
 ./build-mvn.sh
 ```
 
 产物：
 
-- `dist/cyberstrikeai-burp-extension.jar`
+- `dist/secaiai-burp-extension.jar`
 
 #### 方式 B（离线）：纯 JDK 编译（需要 Burp 的 API jar）
 
@@ -54,7 +54,7 @@ cd plugins/burp-suite/cyberstrikeai-burp-extension
 1) 在插件目录创建 `lib/`，并把 `burp-extender-api.jar` 复制进去：
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/secaiai-burp-extension
 mkdir -p lib
 # 复制 Burp 自带的 API jar 到这里，例如：
 # cp "/path/to/burp-extender-api.jar" lib/
@@ -63,19 +63,19 @@ mkdir -p lib
 2) 一键编译打包：
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/secaiai-burp-extension
 ./build.sh
 ```
 
 产物：
 
-- `dist/cyberstrikeai-burp-extension.jar`
+- `dist/secaiai-burp-extension.jar`
 
 ### 在 Burp Suite 中加载
 
 - Burp Suite → **Extensions** → **Installed** → **Add**
 - Extension type：**Java**
-- 选择 `dist/cyberstrikeai-burp-extension.jar`
+- 选择 `dist/secaiai-burp-extension.jar`
 
 ### 使用方法
 
