@@ -7,10 +7,10 @@ import (
 	"strings"
 	"sync"
 
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/audit"
+	"secai/internal/authctx"
+	"secai/internal/database"
+	"secai/internal/security"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

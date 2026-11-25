@@ -3,7 +3,7 @@ package handler
 import (
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 func TestHitlAuditEngineInfoTypeSafe(t *testing.T) {

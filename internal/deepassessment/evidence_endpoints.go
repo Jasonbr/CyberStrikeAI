@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 )
 
 type EndpointEvidence struct {

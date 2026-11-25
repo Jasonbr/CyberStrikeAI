@@ -5,12 +5,12 @@ import (
 	"path/filepath"
 	"testing"
 
-	agentpkg "cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/agentfinalizer"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/multiagent"
+	agentpkg "secai/internal/agent"
+	"secai/internal/agentfinalizer"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/mcp"
+	"secai/internal/multiagent"
 
 	"go.uber.org/zap"
 )

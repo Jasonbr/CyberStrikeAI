@@ -2,7 +2,7 @@
 
 [中文](../zh-CN/developer-guide.md)
 
-This guide is for contributors extending CyberStrikeAI. The project is a Go single-service application with a static frontend, SQLite persistence, Agent/MCP orchestration, and optional high-risk security subsystems.
+This guide is for contributors extending SecAI. The project is a Go single-service application with a static frontend, SQLite persistence, Agent/MCP orchestration, and optional high-risk security subsystems.
 
 ## Project Layout
 
@@ -59,7 +59,7 @@ additionally requires a global (`all` scope) session: one machine has one source
 ### Where the code comes from
 
 From **the update source repository**: one address, the official repository
-`https://github.com/AIPentest/CyberStrikeAI.git` by default, and the update follows that repository's
+`https://github.com/AIPentest/SecAI.git` by default, and the update follows that repository's
 **own default branch** (nothing about branches is configured, and "main" is not hardcoded), so an
 installation with no configuration at all still has exactly one answer to "where does an update come
 from". `upgrade.sh` is now a thin shell over the same implementation: when this directory is a git
@@ -73,7 +73,7 @@ the one place to change:
 
 ```yaml
 update:
-  repo: https://github.com/AIPentest/CyberStrikeAI.git  # one repository address; empty/absent = the official repository
+  repo: https://github.com/AIPentest/SecAI.git  # one repository address; empty/absent = the official repository
 ```
 
 The console's "Update source" block edits and saves this address (saving it empty goes back to the

@@ -1,9 +1,9 @@
 package multiagent
 
 import (
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/reasoning"
+	"secai/internal/agentruntime"
+	"secai/internal/config"
+	"secai/internal/reasoning"
 	"strings"
 )
 

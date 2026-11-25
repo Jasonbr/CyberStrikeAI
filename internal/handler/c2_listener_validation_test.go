@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/c2"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/c2"
+	"secai/internal/database"
+	"secai/internal/security"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

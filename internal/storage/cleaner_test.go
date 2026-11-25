@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 // fakeActivity 是 Activity 的测试替身。

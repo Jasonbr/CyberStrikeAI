@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/projectprompt"
+	"secai/internal/database"
+	"secai/internal/projectprompt"
 )
 
 // PathGraphCategories 攻击路径视图包含的事实分类。

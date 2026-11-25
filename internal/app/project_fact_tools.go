@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
-	"cyberstrike-ai/internal/project"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/mcp"
+	"secai/internal/mcp/builtin"
+	"secai/internal/project"
 
 	"go.uber.org/zap"
 )

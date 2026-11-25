@@ -3,10 +3,10 @@ package app
 import (
 	"context"
 
-	"cyberstrike-ai/internal/c2"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/handler"
+	"secai/internal/c2"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/handler"
 
 	"go.uber.org/zap"
 )

@@ -1,6 +1,6 @@
 # 部署指南
 
-本文说明 CyberStrikeAI 的常见部署方式。生产环境部署前，请先阅读 [安全模型](security-model.md)，确认授权范围、认证、HITL、审计和高风险功能开关。
+本文说明 SecAI 的常见部署方式。生产环境部署前，请先阅读 [安全模型](security-model.md)，确认授权范围、认证、HITL、审计和高风险功能开关。
 
 ## 部署前准备
 
@@ -15,7 +15,7 @@
 建议目录：
 
 ```text
-CyberStrikeAI-main/
+SecAI-main/
   config.yaml
   data/
   tools/
@@ -142,13 +142,13 @@ server {
 
 ```ini
 [Unit]
-Description=CyberStrikeAI
+Description=SecAI
 After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/opt/CyberStrikeAI
-ExecStart=/opt/CyberStrikeAI/cyberstrike-ai --config /opt/CyberStrikeAI/config.yaml
+WorkingDirectory=/opt/SecAI
+ExecStart=/opt/SecAI/cyberstrike-ai --config /opt/SecAI/config.yaml
 Restart=on-failure
 RestartSec=5
 Environment=GIN_MODE=release
@@ -182,7 +182,7 @@ SQLite 热备份时最好先停止服务，或至少复制 `*.db`、`*.db-wal`�
 
 **优先用平台自带的「一键更新」**（控制台「系统设置 → 一键更新」、`POST /api/system/update/apply`、
 或键盘上的 `./cyberstrike-ai -update`）。它从**更新源仓库**（默认官方仓库
-`https://github.com/AIPentest/CyberStrikeAI.git`，可一处配置改成自己的二开或镜像）拉取该仓库默认分支的
+`https://github.com/AIPentest/SecAI.git`，可一处配置改成自己的二开或镜像）拉取该仓库默认分支的
 最新代码：fetch → 快进合并 → `go build` → 原子换二进制（旧的留作 `cyberstrike-ai.prev`），并把
 `roles/ skills/ tools/ agents/ knowledge_base/ data/ config.yaml` 等运维者内容先暂存再放回，结果里点名
 保留了哪些文件。本地源码有改动、或本地历史与更新源分叉时它会拒绝并说明原因，而不是硬来。

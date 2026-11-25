@@ -2,11 +2,11 @@ package handler
 
 import (
 	"crypto/sha256"
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/deepassessment"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/agentruntime"
+	"secai/internal/authctx"
+	"secai/internal/database"
+	"secai/internal/deepassessment"
+	"secai/internal/security"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"

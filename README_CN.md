@@ -1,17 +1,17 @@
 <div align="center">
-  <img src="images/logo.png" alt="CyberStrikeAI" width="144">
-  <h1>CyberStrikeAI</h1>
+  <img src="images/logo.png" alt="SecAI" width="144">
+  <h1>SecAI</h1>
   <p><strong>描述任务，让智能体调用工具并记录执行证据。</strong></p>
   <p><strong>中文</strong> · <a href="README.md">English</a></p>
   <p>
-    <a href="https://github.com/Sycun/CyberStrikeAI/actions/workflows/pi-runtime.yml"><img src="https://github.com/Sycun/CyberStrikeAI/actions/workflows/pi-runtime.yml/badge.svg?branch=main" alt="Pi runtime CI"></a>
-    <a href="https://github.com/Sycun/CyberStrikeAI/actions/workflows/self-update.yml"><img src="https://github.com/Sycun/CyberStrikeAI/actions/workflows/self-update.yml/badge.svg?branch=main" alt="Build and regression CI"></a>
+    <a href="https://github.com/Sycun/SecAI/actions/workflows/pi-runtime.yml"><img src="https://github.com/Sycun/SecAI/actions/workflows/pi-runtime.yml/badge.svg?branch=main" alt="Pi runtime CI"></a>
+    <a href="https://github.com/Sycun/SecAI/actions/workflows/self-update.yml"><img src="https://github.com/Sycun/SecAI/actions/workflows/self-update.yml/badge.svg?branch=main" alt="Build and regression CI"></a>
   </p>
 </div>
 
-CyberStrikeAI 是基于 **Go + Pi** 的网络安全智能体工作台。通过对话执行任务，或使用批量队列管理任务清单；智能体调用工具并记录结果与证据。
+SecAI 是基于 **Go + Pi** 的网络安全智能体工作台。通过对话执行任务，或使用批量队列管理任务清单；智能体调用工具并记录结果与证据。
 
-本仓库由 **Sycun** 维护，基于 [AIPentest/CyberStrikeAI](https://github.com/AIPentest/CyberStrikeAI) 持续开发，保留上游历史、许可证与版权声明。批量任务入口为 **「任务管理 → 新建任务」**。
+本仓库由 **Sycun** 维护，基于 [AIPentest/SecAI](https://github.com/AIPentest/SecAI) 持续开发，保留上游历史、许可证与版权声明。批量任务入口为 **「任务管理 → 新建任务」**。
 
 [快速上手](#quick-start) · [任务管理](#delegation) · [主要能力](#capabilities) · [架构](#architecture) · [文档](#documentation) · [反馈](#contributing)
 
@@ -35,8 +35,8 @@ CyberStrikeAI 是基于 **Go + Pi** 的网络安全智能体工作台。通过�
 以下命令用于 macOS / Linux 的 Bash 环境：
 
 ```bash
-git clone --branch main https://github.com/Sycun/CyberStrikeAI.git
-cd CyberStrikeAI
+git clone --branch main https://github.com/Sycun/SecAI.git
+cd SecAI
 cp config.example.yaml config.yaml
 ```
 
@@ -119,8 +119,8 @@ go build -o cyberstrike-ai ./cmd/server
 
 | 集成 | 使用方式 | 文档与下载 |
 | --- | --- | --- |
-| Burp Suite | 将选定 HTTP 请求交给 CyberStrikeAI 分析 | [安装说明](plugins/burp-suite/cyberstrikeai-burp-extension/README.zh-CN.md) · [JAR](plugins/burp-suite/cyberstrikeai-burp-extension/dist/cyberstrikeai-burp-extension.jar) |
-| Chrome / Edge | 在 DevTools 的 CyberStrikeAI 标签页捕获并发送请求 | [安装说明](plugins/browser-extension/cyberstrikeai-browser-extension/README.zh-CN.md) · [ZIP](plugins/browser-extension/cyberstrikeai-browser-extension/dist/cyberstrikeai-browser-extension.zip) |
+| Burp Suite | 将选定 HTTP 请求交给 SecAI 分析 | [安装说明](plugins/burp-suite/cyberstrikeai-burp-extension/README.zh-CN.md) · [JAR](plugins/burp-suite/cyberstrikeai-burp-extension/dist/cyberstrikeai-burp-extension.jar) |
+| Chrome / Edge | 在 DevTools 的 SecAI 标签页捕获并发送请求 | [安装说明](plugins/browser-extension/cyberstrikeai-browser-extension/README.zh-CN.md) · [ZIP](plugins/browser-extension/cyberstrikeai-browser-extension/dist/cyberstrikeai-browser-extension.zip) |
 
 <details>
 <summary><strong>查看工作台界面</strong></summary>
@@ -150,7 +150,7 @@ go build -o cyberstrike-ai ./cmd/server
 
 ```yaml
 update:
-  repo: https://github.com/Sycun/CyberStrikeAI
+  repo: https://github.com/Sycun/SecAI
 ```
 
 已有安装请在 **系统设置 → 一键更新** 核对来源。`update.repo` 留空仍会回到官方上游，不会自动选择这个个人维护版本。更新流程会构建匹配源码的 Pi Worker；部署步骤见[部署指南](docs/zh-CN/deployment.md)。
@@ -159,7 +159,7 @@ update:
 
 ## 验证状态
 
-回归覆盖 Go、前端及隔离的批量队列界面操作。已撤回功能的历史验收不代表当前版本能力；复杂长任务、各模型渠道的兼容性，以及意图识别准确率、成本和效果仍需继续评估。最新检查见 [GitHub Actions](https://github.com/Sycun/CyberStrikeAI/actions)。
+回归覆盖 Go、前端及隔离的批量队列界面操作。已撤回功能的历史验收不代表当前版本能力；复杂长任务、各模型渠道的兼容性，以及意图识别准确率、成本和效果仍需继续评估。最新检查见 [GitHub Actions](https://github.com/Sycun/SecAI/actions)。
 
 <a id="documentation"></a>
 
@@ -180,9 +180,9 @@ update:
 
 ## 反馈与贡献
 
-请在[本仓库 Issues](https://github.com/Sycun/CyberStrikeAI/issues)反馈内测问题。附上提交版本、操作系统、模型协议/渠道类型、复现步骤和脱敏日志；不要上传 API Key、登录凭据或真实项目的敏感材料。欢迎提交工具适配、体验改进与回归用例的 PR。
+请在[本仓库 Issues](https://github.com/Sycun/SecAI/issues)反馈内测问题。附上提交版本、操作系统、模型协议/渠道类型、复现步骤和脱敏日志；不要上传 API Key、登录凭据或真实项目的敏感材料。欢迎提交工具适配、体验改进与回归用例的 PR。
 
-本仓库与官方上游独立发布；上游项目及其社区信息请参阅 [AIPentest/CyberStrikeAI](https://github.com/AIPentest/CyberStrikeAI)。感谢原项目作者、贡献者，以及 Pi、MCP 和其他开源项目。
+本仓库与官方上游独立发布；上游项目及其社区信息请参阅 [AIPentest/SecAI](https://github.com/AIPentest/SecAI)。感谢原项目作者、贡献者，以及 Pi、MCP 和其他开源项目。
 
 ## 许可证与使用范围
 

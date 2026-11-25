@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/security"
-	"cyberstrike-ai/internal/update"
+	"secai/internal/database"
+	"secai/internal/security"
+	"secai/internal/update"
 
 	"go.uber.org/zap"
 )

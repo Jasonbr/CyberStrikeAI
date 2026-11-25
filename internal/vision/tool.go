@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
+	"secai/internal/config"
+	"secai/internal/mcp"
+	"secai/internal/mcp/builtin"
 
 	"go.uber.org/zap"
 )

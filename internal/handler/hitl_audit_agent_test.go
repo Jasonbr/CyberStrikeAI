@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 func TestParseAuditAgentLLMContentApprove(t *testing.T) {

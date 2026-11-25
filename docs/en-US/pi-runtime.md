@@ -1,6 +1,6 @@
 # Pi runtime
 
-CyberStrikeAI uses Pi 1.5.2 as its only runtime. Go owns business state, permissions, MCP execution, evidence, and delivery checks; an isolated Node worker hosts the Pi SDK. The source repository is [Sycun/CyberStrikeAI](https://github.com/Sycun/CyberStrikeAI). The upstream contribution fork is [CyberStrikeAI-upstream-fork](https://github.com/Sycun/CyberStrikeAI-upstream-fork).
+SecAI uses Pi 1.5.2 as its only runtime. Go owns business state, permissions, MCP execution, evidence, and delivery checks; an isolated Node worker hosts the Pi SDK. The source repository is [Sycun/SecAI](https://github.com/Sycun/SecAI). The upstream contribution fork is [SecAI-upstream-fork](https://github.com/Sycun/SecAI-upstream-fork).
 
 Prefer public APIs from the pinned Pi SDK. Add host or worker logic where project permissions, business records, or compatibility require it.
 
@@ -35,4 +35,4 @@ Workflow now uses a native DAG and versioned JSON checkpoints. Old Eino Workflow
 
 See the [Chinese implementation and validation guide](../zh-CN/pi-runtime.md) for protocol, recovery and test details. Local fixtures establish functional behavior, not live-provider reliability, refusal-rate improvements or production acceptance.
 
-The example configuration follows Sycun/CyberStrikeAI. Existing installations retain their own update source, which must be checked separately; this source migration does not deploy or change a running production configuration.
+The example configuration follows Sycun/SecAI. Existing installations retain their own update source, which must be checked separately; this source migration does not deploy or change a running production configuration.

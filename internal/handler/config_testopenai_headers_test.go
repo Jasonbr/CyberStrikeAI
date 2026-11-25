@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 func TestFirstOMLXConnectionProbeUsesDetectedLocalOutputLimit(t *testing.T) {

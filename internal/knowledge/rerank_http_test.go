@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 func TestHTTPReranker_CohereOrder(t *testing.T) {

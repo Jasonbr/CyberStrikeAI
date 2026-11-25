@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/processguard"
+	"secai/internal/processguard"
 )
 
 // ShellSession caches the process group while its command is alive. Signals

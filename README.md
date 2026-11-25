@@ -1,19 +1,19 @@
 <div align="center">
-  <img src="images/logo.png" alt="CyberStrikeAI" width="144">
-  <h1>CyberStrikeAI</h1>
+  <img src="images/logo.png" alt="SecAI" width="144">
+  <h1>SecAI</h1>
   <p><strong>Describe tasks. Let agents use tools and record execution evidence.</strong></p>
   <p><a href="README_CN.md">中文</a> · <strong>English</strong></p>
   <p>
-    <a href="https://github.com/Sycun/CyberStrikeAI/actions/workflows/pi-runtime.yml"><img src="https://github.com/Sycun/CyberStrikeAI/actions/workflows/pi-runtime.yml/badge.svg?branch=main" alt="Pi runtime CI"></a>
-    <a href="https://github.com/Sycun/CyberStrikeAI/actions/workflows/self-update.yml"><img src="https://github.com/Sycun/CyberStrikeAI/actions/workflows/self-update.yml/badge.svg?branch=main" alt="Build and regression CI"></a>
+    <a href="https://github.com/Sycun/SecAI/actions/workflows/pi-runtime.yml"><img src="https://github.com/Sycun/SecAI/actions/workflows/pi-runtime.yml/badge.svg?branch=main" alt="Pi runtime CI"></a>
+    <a href="https://github.com/Sycun/SecAI/actions/workflows/self-update.yml"><img src="https://github.com/Sycun/SecAI/actions/workflows/self-update.yml/badge.svg?branch=main" alt="Build and regression CI"></a>
   </p>
 </div>
 
-CyberStrikeAI is a cybersecurity agent workbench built with **Go + Pi**. Run tasks through chat or manage supplied task lists in batch queues. Agents call tools and record results and evidence.
+SecAI is a cybersecurity agent workbench built with **Go + Pi**. Run tasks through chat or manage supplied task lists in batch queues. Agents call tools and record results and evidence.
 
-This repository is an **independent maintenance fork** maintained by **Jasonbr**, integrating both [AIPentest/CyberStrikeAI](https://github.com/AIPentest/CyberStrikeAI) (official upstream) and [Sycun/CyberStrikeAI](https://github.com/Sycun/CyberStrikeAI) (active community maintainer) into a single complete branch. Upstream history, license, and copyright notices are preserved.
+This repository is an **independent maintenance fork** maintained by **Jasonbr**, integrating both [AIPentest/SecAI](https://github.com/AIPentest/SecAI) (official upstream) and [Sycun/SecAI](https://github.com/Sycun/SecAI) (active community maintainer) into a single complete branch. Upstream history, license, and copyright notices are preserved.
 
-The `maintenance` branch is the primary branch — it contains all commits from both upstreams merged together, making it the most complete CyberStrikeAI codebase available.
+The `maintenance` branch is the primary branch — it contains all commits from both upstreams merged together, making it the most complete SecAI codebase available.
 
 [Quick start](#quick-start) · [Task management](#delegation) · [Capabilities](#capabilities) · [Architecture](#architecture) · [Documentation](#documentation) · [Feedback](#contributing)
 
@@ -37,8 +37,8 @@ You also need a model channel that supports tool calling, plus the tools or MCP 
 The following commands use Bash on macOS or Linux:
 
 ```bash
-git clone --branch main https://github.com/Sycun/CyberStrikeAI.git
-cd CyberStrikeAI
+git clone --branch main https://github.com/Sycun/SecAI.git
+cd SecAI
 cp config.example.yaml config.yaml
 ```
 
@@ -121,8 +121,8 @@ Specialized operations also include [WebShell](docs/en-US/webshell.md) and [C2](
 
 | Integration | Usage | Documentation and download |
 | --- | --- | --- |
-| Burp Suite | Send selected HTTP requests to CyberStrikeAI for analysis | [Setup](plugins/burp-suite/cyberstrikeai-burp-extension/README.md) · [JAR](plugins/burp-suite/cyberstrikeai-burp-extension/dist/cyberstrikeai-burp-extension.jar) |
-| Chrome / Edge | Capture and send requests from the CyberStrikeAI DevTools tab | [Setup](plugins/browser-extension/cyberstrikeai-browser-extension/README.md) · [ZIP](plugins/browser-extension/cyberstrikeai-browser-extension/dist/cyberstrikeai-browser-extension.zip) |
+| Burp Suite | Send selected HTTP requests to SecAI for analysis | [Setup](plugins/burp-suite/cyberstrikeai-burp-extension/README.md) · [JAR](plugins/burp-suite/cyberstrikeai-burp-extension/dist/cyberstrikeai-burp-extension.jar) |
+| Chrome / Edge | Capture and send requests from the SecAI DevTools tab | [Setup](plugins/browser-extension/cyberstrikeai-browser-extension/README.md) · [ZIP](plugins/browser-extension/cyberstrikeai-browser-extension/dist/cyberstrikeai-browser-extension.zip) |
 
 <details>
 <summary><strong>Explore the workbench</strong></summary>
@@ -152,7 +152,7 @@ For new installations, [config.example.yaml](config.example.yaml) points updates
 
 ```yaml
 update:
-  repo: https://github.com/Sycun/CyberStrikeAI
+  repo: https://github.com/Sycun/SecAI
 ```
 
 For an existing installation, check the source under **Settings → One-click Update**. An empty `update.repo` still selects the official upstream, not this independently maintained version. The update process builds a Pi worker matching the source. See [deployment](docs/en-US/deployment.md) for the procedure.
@@ -161,7 +161,7 @@ Before migrating from an Eino version, back up runtime configuration and data, a
 
 ## Validation status
 
-Regression checks cover Go, frontend behavior and isolated batch-queue UI operations. Historical validation of withdrawn features does not describe current product capabilities. Model compatibility, cost and effectiveness require separate evaluation. See [GitHub Actions](https://github.com/Sycun/CyberStrikeAI/actions) for current checks.
+Regression checks cover Go, frontend behavior and isolated batch-queue UI operations. Historical validation of withdrawn features does not describe current product capabilities. Model compatibility, cost and effectiveness require separate evaluation. See [GitHub Actions](https://github.com/Sycun/SecAI/actions) for current checks.
 
 <a id="documentation"></a>
 
@@ -182,9 +182,9 @@ Browse all topics in the [English documentation](docs/en-US/README.md) or [bilin
 
 ## Feedback and contributions
 
-Report trial feedback in [this repository's Issues](https://github.com/Sycun/CyberStrikeAI/issues). Include the commit, operating system, model protocol/channel type, reproduction steps, and redacted logs. Do not upload API keys, credentials, or sensitive engagement materials. PRs for tool adapters, usability improvements, and regression cases are welcome.
+Report trial feedback in [this repository's Issues](https://github.com/Sycun/SecAI/issues). Include the commit, operating system, model protocol/channel type, reproduction steps, and redacted logs. Do not upload API keys, credentials, or sensitive engagement materials. PRs for tool adapters, usability improvements, and regression cases are welcome.
 
-This repository and the official upstream publish independently. For upstream community information, visit [AIPentest/CyberStrikeAI](https://github.com/AIPentest/CyberStrikeAI). Thanks to the original authors and contributors, and to Pi, MCP, and the other open-source projects used here.
+This repository and the official upstream publish independently. For upstream community information, visit [AIPentest/SecAI](https://github.com/AIPentest/SecAI). Thanks to the original authors and contributors, and to Pi, MCP, and the other open-source projects used here.
 
 ## License and intended use
 

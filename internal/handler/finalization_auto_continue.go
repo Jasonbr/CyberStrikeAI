@@ -5,10 +5,10 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/agentfinalizer"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/multiagent"
+	"secai/internal/agent"
+	"secai/internal/agentfinalizer"
+	"secai/internal/mcp"
+	"secai/internal/multiagent"
 
 	"go.uber.org/zap"
 )

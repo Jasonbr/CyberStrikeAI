@@ -3,7 +3,7 @@ package reasoning
 import (
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 // effectiveModeForModel accepts effort=none only for known native OpenAI

@@ -3,7 +3,7 @@ package knowledge
 import (
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 func doc(id, content string, score float64) *Document {

@@ -2,7 +2,7 @@ package multiagent
 
 import (
 	"context"
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 )
 
 type taskToolsKey struct{}

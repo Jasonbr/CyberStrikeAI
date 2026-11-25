@@ -9,14 +9,14 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/multiagent"
-	"cyberstrike-ai/internal/project"
+	"secai/internal/agent"
+	"secai/internal/audit"
+	"secai/internal/authctx"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/mcp"
+	"secai/internal/multiagent"
+	"secai/internal/project"
 
 	"go.uber.org/zap"
 )

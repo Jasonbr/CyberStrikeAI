@@ -6,9 +6,9 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/audit"
+	"secai/internal/config"
+	"secai/internal/security"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

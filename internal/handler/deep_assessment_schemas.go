@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"cyberstrike-ai/internal/deepassessment"
+	"secai/internal/deepassessment"
 	"fmt"
 )
 

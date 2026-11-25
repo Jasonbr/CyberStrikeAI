@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"github.com/bwmarrin/discordgo"
 	lark "github.com/larksuite/oapi-sdk-go/v3"

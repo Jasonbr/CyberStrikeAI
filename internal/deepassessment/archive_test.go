@@ -2,7 +2,7 @@ package deepassessment
 
 import (
 	"context"
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 	"errors"
 	"sync/atomic"
 	"testing"

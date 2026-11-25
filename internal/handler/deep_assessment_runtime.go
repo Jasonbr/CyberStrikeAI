@@ -2,7 +2,7 @@ package handler
 
 import (
 	"context"
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -14,13 +14,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/deepassessment"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/multiagent"
+	"secai/internal/agentruntime"
+	"secai/internal/audit"
+	"secai/internal/authctx"
+	"secai/internal/config"
+	"secai/internal/deepassessment"
+	"secai/internal/mcp"
+	"secai/internal/multiagent"
 	"github.com/google/uuid"
 	"go.uber.org/zap"
 )

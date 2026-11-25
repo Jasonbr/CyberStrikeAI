@@ -6,7 +6,7 @@ set -euo pipefail
 # Two installation kinds, decided at runtime from this directory itself:
 #
 #  1. git work tree (the normal case):
-#     the update is delegated to the platform binary, `./cyberstrike-ai -update`, which
+#     the update is delegated to the platform binary, `./secai -update`, which
 #     fetches the configured update source (config.yaml update.repo; empty = the official
 #     repository, and one field points it at a fork or a mirror) and follows that
 #     repository's own default branch, fast-forwards, rebuilds with `go build` and swaps
@@ -28,12 +28,12 @@ set -euo pipefail
 # - tools/ (user extensions; never overwritten by upgrade)
 # - roles/, skills/, agents/
 # - the rollback points of an earlier one-click update:
-#   .update-backup/, .update-state.json, .update-build-pending, cyberstrike-ai.prev
+#   .update-backup/, .update-state.json, .update-build-pending, secai.prev
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
-BINARY_NAME="cyberstrike-ai"
+BINARY_NAME="secai"
 CONFIG_FILE="$ROOT_DIR/config.yaml"
 DATA_DIR="$ROOT_DIR/data"
 VENV_DIR="$ROOT_DIR/venv"
@@ -68,7 +68,7 @@ What it does depends on the installation kind (detected automatically):
 
   git work tree     Updates from the configured source repository (config.yaml
                     update.repo; empty = the official repository) by calling
-                    ./cyberstrike-ai -update (fetch, fast-forward, go build, swap binary).
+                    ./secai -update (fetch, fast-forward, go build, swap binary).
                     --tag/--repo are ignored on this path. Your own roles/skills/tools/
                     agents/data/config are put aside and restored by the platform;
                     local source edits or diverged history stop the update instead of
@@ -78,7 +78,7 @@ What it does depends on the installation kind (detected automatically):
 
 Options:
   --check             Report only, change nothing: never stops the service, never writes.
-                      git tree: ./cyberstrike-ai -check-update, or
+                      git tree: ./secai -check-update, or
                       go run ./cmd/server -check-update while there is no binary yet.
                       plain directory: prints the newest Release tag and the version
                       recorded in config.yaml.
@@ -91,11 +91,11 @@ Options:
   --no-stop           Do not stop the running service, and do not start it afterwards
                       (use this under systemd or any supervisor; restart the unit yourself).
   --force-stop        If no process matching current directory is found, also stop
-                      any cyberstrike-ai processes (use with caution).
+                      any secai processes (use with caution).
   --yes               Do not ask for confirmation.
 
 Rollback:
-  ./cyberstrike-ai -update-rollback
+  ./secai -update-rollback
   Undoes the last one-click update (back to the commit and the binary kept before it).
 EOF
 }
@@ -190,7 +190,7 @@ explain_no_go() {
 
 stop_service() {
   # Try to stop the service that is running from the current project directory.
-  # If nothing is found and --force-stop is enabled, stop all cyberstrike-ai processes.
+  # If nothing is found and --force-stop is enabled, stop all secai processes.
   if [[ "$STOP_SERVICE" -ne 1 ]]; then
     return 0
   fi

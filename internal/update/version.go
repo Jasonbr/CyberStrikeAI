@@ -1,7 +1,7 @@
 package update
 
 import (
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 	"fmt"
 	"path/filepath"
 )

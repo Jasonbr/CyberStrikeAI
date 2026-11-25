@@ -6,9 +6,9 @@ import (
 	"os"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/logger"
-	"cyberstrike-ai/internal/mcp"
+	"secai/internal/config"
+	"secai/internal/logger"
+	"secai/internal/mcp"
 )
 
 func main() {

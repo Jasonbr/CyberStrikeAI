@@ -69,7 +69,7 @@
 
 ## 调研结论与覆盖范围
 
-[#357](https://github.com/AIPentest/CyberStrikeAI/issues/357) 仅提出自动获取代理与被封后切换，未定义供应商、识别方式或工具范围。当前实现从能读取 HTTP 响应的 `http-framework-test` 接入，使 HTTP 和 HTTPS 的切换行为都可验证。
+[#357](https://github.com/AIPentest/SecAI/issues/357) 仅提出自动获取代理与被封后切换，未定义供应商、识别方式或工具范围。当前实现从能读取 HTTP 响应的 `http-framework-test` 接入，使 HTTP 和 HTTPS 的切换行为都可验证。
 
 HTTP CONNECT 隧道中的 HTTPS 响应需要由发起请求的客户端解密才能读取，因此单独增加全局转发代理不足以识别全部工具的 HTTPS 封禁响应。HTTPX 的代理与自定义传输接口适合在本工具内完成切换，见 [HTTPX 代理文档](https://www.python-httpx.org/advanced/proxies/)与[传输文档](https://www.python-httpx.org/advanced/transports/)。
 

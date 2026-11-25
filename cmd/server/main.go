@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"cyberstrike-ai/internal/app"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/logger"
-	"cyberstrike-ai/internal/processguard"
-	"cyberstrike-ai/internal/security"
-	"cyberstrike-ai/internal/termout"
+	"secai/internal/app"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/logger"
+	"secai/internal/processguard"
+	"secai/internal/security"
+	"secai/internal/termout"
 	"flag"
 	"fmt"
 	"os"
@@ -56,7 +56,7 @@ func main() {
 		cp = "config.yaml"
 	}
 	if strings.HasPrefix(cp, "-") {
-		fmt.Fprintf(os.Stderr, "Invalid -config path %q.\nIf HTTPS is also needed, use: ./cyberstrike-ai --https -config config.yaml (-config must be followed by a yaml file path).\n", cp)
+		fmt.Fprintf(os.Stderr, "Invalid -config path %q.\nIf HTTPS is also needed, use: ./secai --https -config config.yaml (-config must be followed by a yaml file path).\n", cp)
 		os.Exit(2)
 	}
 	localConfig, err := config.EnsureLocalConfig(cp)

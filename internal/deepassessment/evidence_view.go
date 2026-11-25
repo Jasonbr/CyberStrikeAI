@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"slices"
 
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 )
 
 const evidenceGraphPageSize = 12

@@ -7,10 +7,10 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/deepassessment"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/agentruntime"
+	"secai/internal/database"
+	"secai/internal/deepassessment"
+	"secai/internal/security"
 
 	"github.com/gin-gonic/gin"
 )

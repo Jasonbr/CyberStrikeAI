@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"syscall"
 
-	"cyberstrike-ai/internal/processguard"
+	"secai/internal/processguard"
 )
 
 // prepareShellCmdSession 让 shell 子进程在独立会话中运行，便于超时/取消时整组 SIGKILL（含子进程）。

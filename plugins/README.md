@@ -1,6 +1,6 @@
 ## Plugins
 
-Optional integrations that connect CyberStrikeAI with other tools.
+Optional integrations that connect SecAI with other tools.
 
 ### Burp Suite
 
@@ -12,7 +12,7 @@ Optional integrations that connect CyberStrikeAI with other tools.
 
 - **Path**: `plugins/browser-extension/cyberstrikeai-browser-extension/`
 - **Version**: **0.3.11**
-- **Install**: `chrome://extensions/` → Load unpacked → F12 → **CyberStrikeAI** tab
+- **Install**: `chrome://extensions/` → Load unpacked → F12 → **SecAI** tab
 - **Package**: `bash package.sh` → `dist/cyberstrikeai-browser-extension.zip`
 - **Docs**: `README.zh-CN.md` (full) / `README.md` (summary)
 

@@ -1,7 +1,7 @@
 package deepassessment
 
 import (
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 	"encoding/json"
 	"fmt"
 	"strings"

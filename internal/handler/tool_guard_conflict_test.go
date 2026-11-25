@@ -11,8 +11,8 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/toolguard"
+	"secai/internal/config"
+	"secai/internal/toolguard"
 
 	"github.com/gin-gonic/gin"
 )

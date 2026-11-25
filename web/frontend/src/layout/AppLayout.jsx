@@ -271,7 +271,7 @@ export default function AppLayout() {
     }, [location.pathname, page?.parent]);
 
     useEffect(() => {
-        document.title = `${page ? t(page.i18n, null, page.fallback) : '工作台'} · CyberStrikeAI`;
+        document.title = `${page ? t(page.i18n, null, page.fallback) : '工作台'} · SecAI`;
     }, [page, t]);
 
     const onSelect = ({ itemKey }) => {
@@ -292,7 +292,7 @@ export default function AppLayout() {
     const navNode = (
         <div className={`cs-sidebar-inner ${compact ? 'is-compact' : ''}`}>
             <Button className="cs-brand" theme="borderless" type="tertiary" onClick={() => navigate('/dashboard')}
-                aria-label="CyberStrikeAI" aria-describedby={version ? versionId : undefined}>
+                aria-label="SecAI" aria-describedby={version ? versionId : undefined}>
                 <img src="/static/logo.png" alt="" className="cs-brand-logo" />
                 {!compact && (
                     <span className="cs-brand-copy">
@@ -336,7 +336,7 @@ export default function AppLayout() {
         </div>
     );
 
-    const title = page ? t(page.i18n, null, page.fallback) : 'CyberStrikeAI';
+    const title = page ? t(page.i18n, null, page.fallback) : 'SecAI';
     const parentPage = page?.parent ? findPage(page.parent) : null;
     const parentTitle = parentPage ? t(parentPage.i18n, null, parentPage.fallback) : '';
 

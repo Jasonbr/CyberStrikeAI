@@ -7,7 +7,7 @@ import (
 	"io"
 	"time"
 
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 )
 
 type restartSession struct {

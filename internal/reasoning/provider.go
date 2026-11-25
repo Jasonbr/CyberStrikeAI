@@ -4,7 +4,7 @@ package reasoning
 import (
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 // ClientIntent is optional per-request override from ChatRequest.reasoning.

@@ -3,7 +3,7 @@ package agentfinalizer
 import (
 	"testing"
 
-	"cyberstrike-ai/internal/multiagent"
+	"secai/internal/multiagent"
 )
 
 func TestRuntimeIterationLimitCannotBecomeCompleted(t *testing.T) {

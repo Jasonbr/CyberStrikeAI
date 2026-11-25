@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 )
 
 func TestRecoverStoppedDrainNormalizesStepsWithoutRestarting(t *testing.T) {

@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"cyberstrike-ai/internal/agents"
+	"secai/internal/agents"
 	"gopkg.in/yaml.v3"
 )
 

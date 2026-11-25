@@ -13,11 +13,11 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/c2"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
-	"cyberstrike-ai/internal/openai"
+	"secai/internal/c2"
+	"secai/internal/config"
+	"secai/internal/mcp"
+	"secai/internal/mcp/builtin"
+	"secai/internal/openai"
 
 	"go.uber.org/zap"
 )

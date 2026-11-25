@@ -3,8 +3,8 @@ package multiagent
 import (
 	"context"
 
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/config"
+	"secai/internal/agentruntime"
+	"secai/internal/config"
 
 	"github.com/google/uuid"
 )

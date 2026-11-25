@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 func TestMainServerTLSReusesGeneratedIdentity(t *testing.T) {

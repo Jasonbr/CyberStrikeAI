@@ -1,7 +1,7 @@
 package security
 
 import (
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 	"gopkg.in/yaml.v3"
 	"os"
 	"reflect"

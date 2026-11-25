@@ -7,10 +7,10 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/multiagent"
+	"secai/internal/agent"
+	"secai/internal/config"
+	"secai/internal/mcp"
+	"secai/internal/multiagent"
 )
 
 func runBuiltinNode(ctx context.Context, args RunArgs, node graphNode, state *WorkflowLocalState) (map[string]any, bool, string, string) {

@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
+	"secai/internal/database"
+	"secai/internal/mcp"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 	"fmt"
 	"net/http"
 	"strings"

@@ -1,11 +1,11 @@
 package main
 
 import (
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/logger"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/security"
-	"cyberstrike-ai/internal/toolguard"
+	"secai/internal/config"
+	"secai/internal/logger"
+	"secai/internal/mcp"
+	"secai/internal/security"
+	"secai/internal/toolguard"
 	"flag"
 	"fmt"
 	"os"

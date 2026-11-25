@@ -194,7 +194,7 @@ export default function ApiDocsPage() {
         <div className="api-docs-page">
             <PageHeader
                 title={t('apiDocs.title', null, 'API 文档')}
-                description={spec?.info?.description || 'CyberStrikeAI 开放接口'}
+                description={spec?.info?.description || 'SecAI 开放接口'}
                 extra={<Button icon={<IconRefresh />} onClick={load} loading={loading}>重新加载</Button>}
             />
             <div className="api-docs-layout">

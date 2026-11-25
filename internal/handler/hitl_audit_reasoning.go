@@ -3,7 +3,7 @@ package handler
 import (
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 // auditDisableThinking selects only the audit request's provider-specific field.

@@ -14,8 +14,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/multiagent"
+	"secai/internal/agentruntime"
+	"secai/internal/multiagent"
 
 	"github.com/gin-gonic/gin"
 	_ "golang.org/x/image/webp"

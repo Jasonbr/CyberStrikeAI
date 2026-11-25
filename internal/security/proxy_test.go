@@ -1,7 +1,7 @@
 package security
 
 import (
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 	"go.uber.org/zap"
 	"os"
 	"os/exec"

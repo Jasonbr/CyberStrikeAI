@@ -18,7 +18,7 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 // mainTLSMode 主 Web 服务 TLS 启动方式。
@@ -111,7 +111,7 @@ func generateMainServerSelfSignedPEM() ([]byte, error) {
 	}
 	tmpl := &x509.Certificate{
 		SerialNumber: serial,
-		Subject:      pkix.Name{CommonName: "CyberStrikeAI"},
+		Subject:      pkix.Name{CommonName: "SecAI"},
 		NotBefore:    time.Now().Add(-1 * time.Hour),
 		NotAfter:     time.Now().Add(365 * 24 * time.Hour),
 		KeyUsage:     x509.KeyUsageDigitalSignature,

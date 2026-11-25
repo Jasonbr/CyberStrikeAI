@@ -10,7 +10,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"github.com/pkoukk/tiktoken-go"
 )

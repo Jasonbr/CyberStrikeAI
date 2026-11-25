@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/mcp"
+	"secai/internal/agentruntime"
+	"secai/internal/mcp"
 )
 
 func cancelledCallFixture(t *testing.T, s *Store, task *Task, status, conversation, tool string, ended bool) {

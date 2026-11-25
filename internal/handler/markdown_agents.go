@@ -9,9 +9,9 @@ import (
 	"strings"
 	"sync"
 
-	"cyberstrike-ai/internal/agents"
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/config"
+	"secai/internal/agents"
+	"secai/internal/audit"
+	"secai/internal/config"
 
 	"github.com/gin-gonic/gin"
 )

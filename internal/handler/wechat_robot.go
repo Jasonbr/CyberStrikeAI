@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/robot/ilink"
+	"secai/internal/config"
+	"secai/internal/robot/ilink"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"

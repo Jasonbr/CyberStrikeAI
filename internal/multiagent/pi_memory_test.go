@@ -1,9 +1,9 @@
 package multiagent
 
 import (
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
+	"secai/internal/agent"
+	"secai/internal/config"
+	"secai/internal/database"
 	"encoding/json"
 	"go.uber.org/zap"
 	"path/filepath"

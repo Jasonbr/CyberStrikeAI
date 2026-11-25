@@ -2,9 +2,9 @@ package workflow
 
 import (
 	"context"
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/mcp"
+	"secai/internal/agent"
+	"secai/internal/config"
+	"secai/internal/mcp"
 	"go.uber.org/zap"
 	"strings"
 	"testing"

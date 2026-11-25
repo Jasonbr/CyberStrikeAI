@@ -12,10 +12,10 @@ import (
 	"sync"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/security"
-	"cyberstrike-ai/internal/toolguard"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/security"
+	"secai/internal/toolguard"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

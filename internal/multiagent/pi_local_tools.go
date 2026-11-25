@@ -15,11 +15,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/security"
-	"cyberstrike-ai/internal/skillpackage"
-	"cyberstrike-ai/internal/tooloutput"
+	"secai/internal/agentruntime"
+	"secai/internal/mcp"
+	"secai/internal/security"
+	"secai/internal/skillpackage"
+	"secai/internal/tooloutput"
 )
 
 // piLocalCatalog is explicit host registration: Pi never receives default host filesystem tools.

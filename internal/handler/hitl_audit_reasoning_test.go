@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 	"go.uber.org/zap"
 	"gopkg.in/yaml.v3"
 )

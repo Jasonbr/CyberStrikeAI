@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 	"go.uber.org/zap"
 )
 

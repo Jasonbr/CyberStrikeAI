@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 // HitlAuditModelUpdate edits hitl.audit_backend and hitl.audit_model without

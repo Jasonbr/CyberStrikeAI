@@ -207,7 +207,7 @@ async function probeTokenOnServer(force) {
         return;
       }
       if (isNetworkFetchError(err)) {
-        setStatus('Cannot reach server — confirm CyberStrikeAI is running', 'warn');
+        setStatus('Cannot reach server — confirm SecAI is running', 'warn');
         updateConnSummary();
         return;
       }

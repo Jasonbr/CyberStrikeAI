@@ -2,7 +2,7 @@
 
 [English](../en-US/security-hardening.md)
 
-本文给出 CyberStrikeAI 上线前和持续运行中的安全加固清单。
+本文给出 SecAI 上线前和持续运行中的安全加固清单。
 
 ## 上线前必做
 

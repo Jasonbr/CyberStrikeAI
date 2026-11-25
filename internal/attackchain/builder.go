@@ -11,10 +11,10 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/openai"
+	"secai/internal/agent"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/openai"
 
 	"github.com/google/uuid"
 	"go.uber.org/zap"

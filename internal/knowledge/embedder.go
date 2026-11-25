@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"go.uber.org/zap"
 	"golang.org/x/time/rate"

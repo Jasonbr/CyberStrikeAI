@@ -10,12 +10,12 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/monitor"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/audit"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/mcp"
+	"secai/internal/monitor"
+	"secai/internal/security"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

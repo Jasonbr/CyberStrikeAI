@@ -1,10 +1,10 @@
 # Fresh installations follow this independent repository. Existing deployments
 # retain their own update.repo; adopting this version does not modify a running service.
 update:
-  repo: https://github.com/Sycun/CyberStrikeAI
+  repo: https://github.com/Sycun/SecAI
 
 # ============================================
-# CyberStrikeAI 配置文件
+# SecAI 配置文件
 # ============================================
 # 本配置文件支持通过 Web 界面进行可视化配置
 # 点击右上角"设置"按钮即可修改配置
@@ -120,7 +120,7 @@ ai:
       # headers:
       #   X-Api-Key: ${OPENCODE_API_KEY}
       #   x-opencode-session: "%session_id%" # 自动替换为当前对话 ID
-      #   X-Client-Name: cyberstrike-ai
+      #   X-Client-Name: secai
       #   HTTP-Referer: https://example.com
       # 配置自定义头时，仅允许同源重定向，跨主机、端口或协议的重定向会被拒绝。
       # HITL 审计仅在未显式配置 provider/base_url/api_key 时继承主渠道 headers；
@@ -242,7 +242,7 @@ hitl:
   # audit_agent_prompt_review_edit: |  # 审查编辑模式；留空使用内置默认
 
   audit_agent_prompt: |-
-    你是 CyberStrikeAI 人机协同审计 Agent。审查 Agent 即将执行的工具调用是否会对系统造成实质性损害。
+    你是 SecAI 人机协同审计 Agent。审查 Agent 即将执行的工具调用是否会对系统造成实质性损害。
 
     你会收到 JSON，包含 hitlMode、toolName、arguments/argumentsObj、userMessage、thinking、reasoningChain、planning 等字段。
 
@@ -292,7 +292,7 @@ hitl:
     仅输出一行 JSON，不要 markdown 代码块：
     {"decision":"approve"|"reject","comment":"实际操作：...；成功后的后果：...；命中规则：..."}
   audit_agent_prompt_review_edit: |-
-    你是 CyberStrikeAI 人机协同审计 Agent。审查 Agent 即将执行的工具调用是否会对系统造成实质性损害。
+    你是 SecAI 人机协同审计 Agent。审查 Agent 即将执行的工具调用是否会对系统造成实质性损害。
 
     你会收到 JSON，包含 hitlMode、toolName、arguments/argumentsObj、userMessage、thinking、reasoningChain、planning 等字段。
 
@@ -493,7 +493,7 @@ knowledge:
 # ============================================
 # 机器人配置（企业微信、钉钉、飞书）
 # ============================================
-# 用于在手机端通过企业微信/钉钉/飞书与 CyberStrikeAI 对话，无需部署在服务器上也可使用
+# 用于在手机端通过企业微信/钉钉/飞书与 SecAI 对话，无需部署在服务器上也可使用
 # 在系统设置 -> 机器人设置 中可配置
 robots:
   wechat: # 微信 iLink（个人微信 ClawBot，扫码绑定）
@@ -508,7 +508,7 @@ robots:
     ilink_user_id: ""
     base_url: https://ilinkai.weixin.qq.com
     bot_type: "3"
-    bot_agent: CyberStrikeAI/1.0
+    bot_agent: SecAI/1.0
   wecom: # 企业微信
     enabled: false
     auth:
@@ -599,12 +599,12 @@ project:
 # 一键更新（可选）
 # ============================================
 # 更新源：一个仓库地址，更新跟随该仓库自己的默认分支；不配置时就是官方仓库
-# （https://github.com/AIPentest/CyberStrikeAI.git）。GitHub 访问不畅时可在这里填镜像地址，
+# （https://github.com/AIPentest/SecAI.git）。GitHub 访问不畅时可在这里填镜像地址，
 # 想跟随自己的二开也只改这一处；控制台「系统设置 → 一键更新」页可以直接填写保存。
 # 非 git 目录（解压/打包安装）不需要配置，也能在控制台「一键更新」页执行「接入更新源」，
 # 把目录变成跟踪该仓库的 git 工作树，此后按正常安装一键更新。
 # update:
-#   repo: https://github.com/AIPentest/CyberStrikeAI.git  # 一个仓库地址；留空/不写 = 官方仓库
+#   repo: https://github.com/AIPentest/SecAI.git  # 一个仓库地址；留空/不写 = 官方仓库
 
 # HTTP 测试工具的受管出口；不影响 Kali 其他工具、外部 MCP 或大模型 API。
 # 固定 URL 是否固定公网 IP 取决于供应商。运行中的工具使用启动时快照。

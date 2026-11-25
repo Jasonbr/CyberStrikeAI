@@ -1,7 +1,7 @@
 package database
 
 import (
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 	"fmt"
 	"os"
 	"path/filepath"

@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/update"
+	"secai/internal/config"
+	"secai/internal/update"
 	"fmt"
 	"os"
 	"path/filepath"

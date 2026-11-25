@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 func TestMCPEditPreservesStoppedState(t *testing.T) {

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-# CyberStrikeAI one-click deploy and start script
+# SecAI one-click deploy and start script
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT_DIR"
 
@@ -65,7 +65,7 @@ print_banner() {
     local show_mirrors="${1:-1}"
     echo ""
     echo "=========================================="
-    echo "  CyberStrikeAI Deploy & Start Script"
+    echo "  SecAI Deploy & Start Script"
     echo "  (HTTPS with self-signed cert by default; plain HTTP: $0 --http)"
     echo "=========================================="
     echo ""
@@ -90,7 +90,7 @@ CONFIG_FILE="$ROOT_DIR/config.yaml"
 EXAMPLE_CONFIG_FILE="$ROOT_DIR/config.example.yaml"
 VENV_DIR="$ROOT_DIR/venv"
 REQUIREMENTS_FILE="$ROOT_DIR/requirements.txt"
-BINARY_NAME="cyberstrike-ai"
+BINARY_NAME="secai"
 
 # Check Python environment
 check_python() {
@@ -313,7 +313,7 @@ build_go_project() {
     (
         set +e  # disable errexit in subshell
         export GOPROXY="$GOPROXY"
-        go build -o "$BINARY_NAME" ./cmd/server >"$GO_BUILD_LOG" 2>&1
+        go build -o "$BINARY_NAME" cmd/server/main.go >"$GO_BUILD_LOG" 2>&1
         echo $? > "${GO_BUILD_LOG}.exit"
     ) &
     GO_BUILD_PID=$!
@@ -374,7 +374,7 @@ build_go_project_quiet() {
     rm -f "$GO_DOWNLOAD_LOG"
 
     GO_BUILD_LOG=$(mktemp)
-    if ! GOPROXY="$GOPROXY" go build -o "$BINARY_NAME" ./cmd/server >"$GO_BUILD_LOG" 2>&1; then
+    if ! GOPROXY="$GOPROXY" go build -o "$BINARY_NAME" cmd/server/main.go >"$GO_BUILD_LOG" 2>&1; then
         error "Build failed"
         echo ""
         info "Build error details:"
@@ -453,8 +453,6 @@ main() {
         exit 1
     fi
     check_go
-    info "Preparing Pi agent runtime..."
-    bash "$ROOT_DIR/scripts/build-pi-runtime.sh"
     echo ""
     
     # Python setup
@@ -475,10 +473,10 @@ main() {
     success "All setup complete!"
     echo ""
     if [ "$USE_HTTPS" -eq 1 ]; then
-        info "Starting CyberStrikeAI server (HTTPS + HTTP/2, self-signed cert)..."
+        info "Starting SecAI server (HTTPS + HTTP/2, self-signed cert)..."
         note "For plain HTTP, use: $0 --http"
     else
-        info "Starting CyberStrikeAI server (HTTP)..."
+        info "Starting SecAI server (HTTP)..."
     fi
     echo "=========================================="
     echo ""

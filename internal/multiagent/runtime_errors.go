@@ -2,7 +2,7 @@ package multiagent
 
 import (
 	"context"
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 	"errors"
 	"math/rand/v2"
 	"strings"

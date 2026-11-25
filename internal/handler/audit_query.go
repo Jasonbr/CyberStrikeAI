@@ -3,7 +3,7 @@ package handler
 import (
 	"strconv"
 
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 
 	"github.com/gin-gonic/gin"
 )

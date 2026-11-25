@@ -3,7 +3,7 @@ package handler
 import (
 	"strings"
 
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 )
 
 // WebshellSkillHintDefault 对话页 / Agent 单代理共用的 Skills 说明，放在 webshell 上下文末尾，

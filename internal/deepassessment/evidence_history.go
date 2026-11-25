@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 )
 
 type AssetEvidenceRecord struct {

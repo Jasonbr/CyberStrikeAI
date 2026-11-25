@@ -5,7 +5,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 )
 
 func TestReconcileClosedAssessmentPreservesTerminalStateAndEvidence(t *testing.T) {

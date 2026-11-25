@@ -3,7 +3,7 @@ package update
 import (
 	"context"
 	"crypto/sha256"
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 	"debug/buildinfo"
 	"encoding/hex"
 	"fmt"

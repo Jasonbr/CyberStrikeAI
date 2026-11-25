@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/openai"
+	"secai/internal/agent"
+	"secai/internal/agentruntime"
+	"secai/internal/config"
+	"secai/internal/openai"
 	"github.com/google/uuid"
 	"go.uber.org/zap"
 )

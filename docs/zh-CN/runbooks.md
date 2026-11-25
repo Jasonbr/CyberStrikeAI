@@ -2,7 +2,7 @@
 
 [English](../en-US/runbooks.md)
 
-Runbook 是“遇到一个真实任务时照着做”的步骤清单。本文覆盖 CyberStrikeAI 最常见的运维和安全测试操作。
+Runbook 是“遇到一个真实任务时照着做”的步骤清单。本文覆盖 SecAI 最常见的运维和安全测试操作。
 
 ## Runbook 1：生产实例从 0 到可用
 
@@ -28,7 +28,7 @@ chmod +x run.sh && ./run.sh
 1. 准备目录：
 
 ```bash
-mkdir -p /opt/CyberStrikeAI
+mkdir -p /opt/SecAI
 ```
 
 2. 放置二进制和资源目录：

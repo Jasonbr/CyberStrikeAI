@@ -2,8 +2,8 @@ package handler
 
 import (
 	"context"
-	"cyberstrike-ai/internal/config"
-	workflowrunner "cyberstrike-ai/internal/workflow"
+	"secai/internal/config"
+	workflowrunner "secai/internal/workflow"
 	"errors"
 	"github.com/gin-gonic/gin"
 	"net/http"

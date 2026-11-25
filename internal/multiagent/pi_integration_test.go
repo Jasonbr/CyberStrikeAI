@@ -17,13 +17,13 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
-	"cyberstrike-ai/internal/reasoning"
+	"secai/internal/agent"
+	"secai/internal/authctx"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/mcp"
+	"secai/internal/mcp/builtin"
+	"secai/internal/reasoning"
 	"go.uber.org/zap"
 )
 

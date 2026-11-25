@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/processguard"
+	"secai/internal/processguard"
 	"github.com/google/uuid"
 )
 

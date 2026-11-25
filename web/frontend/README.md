@@ -1,6 +1,6 @@
 # 前端（React 19 + Semi Design）
 
-CyberStrikeAI 的 Web 界面是一个 Vite 构建的 React 单页应用，UI 组件统一来自
+SecAI 的 Web 界面是一个 Vite 构建的 React 单页应用，UI 组件统一来自
 [Semi Design](https://semi.design/zh-CN/)。页面不再使用 Go 模板、手写 HTML/CSS/JS 或全局 `window.*` 脚本。
 
 ## 目录

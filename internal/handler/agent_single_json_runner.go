@@ -2,8 +2,8 @@ package handler
 
 import (
 	"context"
-	"cyberstrike-ai/internal/agentfinalizer"
-	"cyberstrike-ai/internal/multiagent"
+	"secai/internal/agentfinalizer"
+	"secai/internal/multiagent"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

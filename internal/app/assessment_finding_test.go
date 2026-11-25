@@ -2,9 +2,9 @@ package app
 
 import (
 	"context"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
+	"secai/internal/database"
+	"secai/internal/mcp"
+	"secai/internal/mcp/builtin"
 	"encoding/json"
 	"go.uber.org/zap"
 	"path/filepath"

@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/mcp"
+	"secai/internal/agent"
+	"secai/internal/agentruntime"
+	"secai/internal/config"
+	"secai/internal/mcp"
 	"go.uber.org/zap"
 )
 

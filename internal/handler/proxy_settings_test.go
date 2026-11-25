@@ -3,8 +3,8 @@ package handler
 import (
 	"bytes"
 	"context"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/config"
+	"secai/internal/security"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"

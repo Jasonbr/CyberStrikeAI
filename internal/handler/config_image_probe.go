@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/multiagent"
+	"secai/internal/agentruntime"
+	"secai/internal/multiagent"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/image/draw"

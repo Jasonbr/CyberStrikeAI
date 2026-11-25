@@ -8,10 +8,10 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/deepassessment"
-	"cyberstrike-ai/internal/openai"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/database"
+	"secai/internal/deepassessment"
+	"secai/internal/openai"
+	"secai/internal/security"
 	"github.com/gin-gonic/gin"
 )
 

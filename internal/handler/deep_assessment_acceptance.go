@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"cyberstrike-ai/internal/deepassessment"
+	"secai/internal/deepassessment"
 	"github.com/gin-gonic/gin"
 )
 

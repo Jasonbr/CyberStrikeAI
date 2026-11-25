@@ -5,7 +5,7 @@ import (
 	"maps"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 // AIChannelUpdate edits an existing channel without replacing the channel map.

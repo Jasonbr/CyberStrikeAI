@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 
 	"github.com/google/uuid"
 )

@@ -1,7 +1,7 @@
 package deepassessment
 
 import (
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 	"database/sql"
 	"encoding/json"
 	"fmt"

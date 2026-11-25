@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 // VectorRetriever implements [DocumentRetriever] on top of SQLite-stored embeddings + cosine similarity.

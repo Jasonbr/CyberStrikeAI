@@ -11,7 +11,7 @@ import (
 	"strings"
 	"syscall"
 
-	"cyberstrike-ai/internal/update"
+	"secai/internal/update"
 
 	"go.uber.org/zap"
 	"golang.org/x/sys/unix"

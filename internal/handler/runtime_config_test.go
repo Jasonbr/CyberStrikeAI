@@ -9,9 +9,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
+	"secai/internal/agentruntime"
+	"secai/internal/config"
+	"secai/internal/database"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"gopkg.in/yaml.v3"

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"go.uber.org/zap"
 )

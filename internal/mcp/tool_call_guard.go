@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/toolguard"
+	"secai/internal/toolguard"
 )
 
 const toolGuardBlockedPrefix = "工具调用已被安全规则拦截"

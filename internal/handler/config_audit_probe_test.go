@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

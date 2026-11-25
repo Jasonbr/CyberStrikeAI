@@ -5,7 +5,7 @@ import (
 	"strings"
 	"sync"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"github.com/tencent-connect/botgo"
 	"github.com/tencent-connect/botgo/dto"

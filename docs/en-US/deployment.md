@@ -2,7 +2,7 @@
 
 [中文](../zh-CN/deployment.md)
 
-CyberStrikeAI can run as a local testing tool, an internal team service, or a production red-team platform. Treat it as a high-privilege security system: it can execute commands, call MCP tools, manage WebShell connections, and optionally run C2 listeners.
+SecAI can run as a local testing tool, an internal team service, or a production red-team platform. Treat it as a high-privilege security system: it can execute commands, call MCP tools, manage WebShell connections, and optionally run C2 listeners.
 
 ## Prerequisites
 
@@ -82,7 +82,7 @@ proxy_set_header Connection "upgrade";
 **Prefer the platform's own one-click update** (console System settings -> One-click update,
 `POST /api/system/update/apply`, or `./cyberstrike-ai -update` at a keyboard). It pulls the newest
 commit of the **update source repository**'s default branch (the official repository
-`https://github.com/AIPentest/CyberStrikeAI.git` by default; one setting points it at your own fork
+`https://github.com/AIPentest/SecAI.git` by default; one setting points it at your own fork
 or a mirror): fetch, fast-forward, `go build`, atomic binary swap (the old binary is kept as
 `cyberstrike-ai.prev`), while operator content - `roles/ skills/ tools/ agents/ knowledge_base/
 data/ config.yaml` - is put aside and restored, and the result names every file it kept. When source

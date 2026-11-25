@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 // normalizeChunkStrategy returns "recursive" or "markdown_then_recursive".

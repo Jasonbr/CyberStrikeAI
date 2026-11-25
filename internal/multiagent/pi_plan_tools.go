@@ -11,7 +11,7 @@ import (
 	"strings"
 	"sync"
 
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 )
 
 var piPlanMu sync.Mutex

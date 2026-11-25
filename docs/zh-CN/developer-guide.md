@@ -63,7 +63,7 @@ go run ./cmd/server --config config.yaml
 
 ### 它从哪里取代码
 
-从**更新源仓库**：一个仓库地址，默认就是官方仓库 `https://github.com/AIPentest/CyberStrikeAI.git`；
+从**更新源仓库**：一个仓库地址，默认就是官方仓库 `https://github.com/AIPentest/SecAI.git`；
 更新跟随该仓库**自己的默认分支**（不用配置分支，也不写死 main），所以对一套没做过任何配置的安装，
 「从哪更新」永远有一个明确答案。`upgrade.sh` 现在只是这条实现的薄壳：本目录是 git 工作树时它直接调
 `./cyberstrike-ai -update`。
@@ -75,7 +75,7 @@ go run ./cmd/server --config config.yaml
 
 ```yaml
 update:
-  repo: https://github.com/AIPentest/CyberStrikeAI.git  # 一个仓库地址；留空/不写 = 官方仓库
+  repo: https://github.com/AIPentest/SecAI.git  # 一个仓库地址；留空/不写 = 官方仓库
 ```
 
 控制台的「一键更新 → 更新源」区块可以直接编辑并保存这个地址（留空保存 = 回到官方仓库）。

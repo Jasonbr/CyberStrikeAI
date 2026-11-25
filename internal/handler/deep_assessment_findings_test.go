@@ -5,9 +5,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/deepassessment"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/database"
+	"secai/internal/deepassessment"
+	"secai/internal/security"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
+	"secai/internal/agent"
+	"secai/internal/authctx"
+	"secai/internal/database"
+	"secai/internal/mcp"
+	"secai/internal/mcp/builtin"
 )
 
 func mcpToolAuthorizer(db *database.DB) func(context.Context, string, map[string]interface{}) error {

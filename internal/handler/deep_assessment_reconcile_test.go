@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/deepassessment"
+	"secai/internal/deepassessment"
 	"github.com/gin-gonic/gin"
 )
 

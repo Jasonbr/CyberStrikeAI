@@ -1,6 +1,6 @@
 # 插件开发
 
-CyberStrikeAI 当前仓库中的插件主要位于 `plugins/`，已有 **Burp Suite 扩展**与 **Chromium 浏览器扩展** 两个参考实现。插件通常通过 HTTP API、MCP 或本地文件与主应用集成。
+SecAI 当前仓库中的插件主要位于 `plugins/`，已有 **Burp Suite 扩展**与 **Chromium 浏览器扩展** 两个参考实现。插件通常通过 HTTP API、MCP 或本地文件与主应用集成。
 
 ## 目录
 
@@ -31,10 +31,10 @@ plugins/
 
 常见集成方式：
 
-- 浏览器或安全工具扩展：调用 CyberStrikeAI API。
-- MCP Server：向 CyberStrikeAI 暴露新工具。
+- 浏览器或安全工具扩展：调用 SecAI API。
+- MCP Server：向 SecAI 暴露新工具。
 - 文件型扩展：提供 tools、roles、skills、agents。
-- Webhook/机器人：通过平台回调与 CyberStrikeAI 对话。
+- Webhook/机器人：通过平台回调与 SecAI 对话。
 
 ## Burp Suite 扩展
 
@@ -42,14 +42,14 @@ Burp 插件目录包含 Java 源码和构建脚本。典型能力：
 
 - 读取 Burp 中的 HTTP 请求/响应。
 - 格式化消息。
-- 调用 CyberStrikeAI API。
+- 调用 SecAI API。
 - 在 Burp 标签页展示 AI 分析结果。
 
 构建前确认：
 
 - JDK 可用。
 - Gradle 或 Maven 可用。
-- CyberStrikeAI 服务地址和认证配置正确。
+- SecAI 服务地址和认证配置正确。
 
 ## 浏览器扩展（Chromium DevTools）
 
@@ -59,7 +59,7 @@ Burp 插件目录包含 Java 源码和构建脚本。典型能力：
 
 - 在 DevTools **Network** 中捕获 XHR/Fetch（可暂停）。
 - 原始 HAR 存内存；展示与 AI Prompt 归一化为 **HTTP/1.1**（与 Burp 一致）。
-- 调用 CyberStrikeAI 登录、Validate、Agent Stream API。
+- 调用 SecAI 登录、Validate、Agent Stream API。
 - DevTools 面板展示 Progress / Final；Popup 只读连接状态。
 
 构建与加载：
@@ -138,7 +138,7 @@ MCP 工具设计建议：
 - 不包含 API Key、Cookie、目标信息。
 - README 有安装、配置、卸载说明。
 - 错误提示清晰。
-- 与当前 CyberStrikeAI API 版本兼容。
+- 与当前 SecAI API 版本兼容。
 - 高风险能力有明显说明。
 
 ## 版本兼容

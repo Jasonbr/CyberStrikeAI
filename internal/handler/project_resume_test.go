@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/project"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/project"
 	"go.uber.org/zap"
 )
 

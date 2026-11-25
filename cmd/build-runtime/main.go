@@ -7,7 +7,7 @@ import (
 	"os"
 	"os/signal"
 
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 )
 
 func main() {

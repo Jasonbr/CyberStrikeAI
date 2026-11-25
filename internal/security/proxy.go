@@ -5,7 +5,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 func (e *Executor) SetProxyConfig(cfg config.ProxyConfig) {

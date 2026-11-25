@@ -2,7 +2,7 @@ package multiagent
 
 import (
 	"context"
-	"cyberstrike-ai/internal/authctx"
+	"secai/internal/authctx"
 	"strings"
 )
 

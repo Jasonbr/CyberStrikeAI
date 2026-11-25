@@ -7,8 +7,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/modelmeta"
+	"secai/internal/config"
+	"secai/internal/modelmeta"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

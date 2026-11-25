@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"github.com/gin-gonic/gin"
 )

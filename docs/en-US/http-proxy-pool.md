@@ -61,7 +61,7 @@ Entries may also be objects such as `{"host":"127.0.0.1","port":8081,"scheme":"h
 
 ## Scope and design
 
-[#357](https://github.com/AIPentest/CyberStrikeAI/issues/357) requests automatic proxy acquisition and switching after a ban, without specifying providers, detection or tool scope. This implementation starts with `http-framework-test`, where both HTTP and decrypted HTTPS responses can be inspected. A standalone forwarding proxy cannot read HTTPS responses inside a CONNECT tunnel. See the [HTTPX proxy](https://www.python-httpx.org/advanced/proxies/) and [transport](https://www.python-httpx.org/advanced/transports/) documentation.
+[#357](https://github.com/AIPentest/SecAI/issues/357) requests automatic proxy acquisition and switching after a ban, without specifying providers, detection or tool scope. This implementation starts with `http-framework-test`, where both HTTP and decrypted HTTPS responses can be inspected. A standalone forwarding proxy cannot read HTTPS responses inside a CONNECT tunnel. See the [HTTPX proxy](https://www.python-httpx.org/advanced/proxies/) and [transport](https://www.python-httpx.org/advanced/transports/) documentation.
 
 A 403 can be an application authorization failure; a 429 can apply to an account or other scope. Status matching is a configurable policy, not proof of an IP ban. CAPTCHA or HTTP 200 block pages remain unchanged. Replay and waiting rules are informed by [RFC 9110 §9.2.2](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2) and [RFC 6585 §4](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).
 

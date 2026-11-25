@@ -1,4 +1,4 @@
-module cyberstrike-ai
+module secai
 
 // 若 go mod download 超时，可执行: go env -w GOPROXY=https://goproxy.cn,direct
 

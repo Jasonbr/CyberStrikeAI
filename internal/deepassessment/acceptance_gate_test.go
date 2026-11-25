@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 )
 
 func TestPerItemAcceptanceFourStatesUseOneVersion(t *testing.T) {

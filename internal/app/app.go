@@ -15,26 +15,26 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/c2"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/handler"
-	"cyberstrike-ai/internal/hitl"
-	"cyberstrike-ai/internal/knowledge"
-	"cyberstrike-ai/internal/logger"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
-	"cyberstrike-ai/internal/monitor"
+	"secai/internal/agent"
+	"secai/internal/agentruntime"
+	"secai/internal/audit"
+	"secai/internal/authctx"
+	"secai/internal/c2"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/handler"
+	"secai/internal/hitl"
+	"secai/internal/knowledge"
+	"secai/internal/logger"
+	"secai/internal/mcp"
+	"secai/internal/mcp/builtin"
+	"secai/internal/monitor"
 
-	"cyberstrike-ai/internal/robot"
-	"cyberstrike-ai/internal/security"
-	"cyberstrike-ai/internal/skillpackage"
-	"cyberstrike-ai/internal/storage"
-	"cyberstrike-ai/internal/toolguard"
+	"secai/internal/robot"
+	"secai/internal/security"
+	"secai/internal/skillpackage"
+	"secai/internal/storage"
+	"secai/internal/toolguard"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -359,7 +359,7 @@ func New(cfg *config.Config, log *logger.Logger, configPath, updateActivation st
 		}()
 	}
 
-	// 配置文件路径必须由入口传入（与 flag -config 一致）。勿再用 os.Args[1]，否则 ./cyberstrike-ai --https 会把 --https 当成路径。
+	// 配置文件路径必须由入口传入（与 flag -config 一致）。勿再用 os.Args[1]，否则 ./secai --https 会把 --https 当成路径。
 	configPath = strings.TrimSpace(configPath)
 	if configPath == "" {
 		configPath = "config.yaml"

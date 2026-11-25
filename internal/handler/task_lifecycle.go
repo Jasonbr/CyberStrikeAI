@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"cyberstrike-ai/internal/runlease"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/runlease"
+	"secai/internal/security"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

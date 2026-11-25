@@ -1,6 +1,6 @@
 # Pi 单代理与多代理
 
-CyberStrikeAI 仅使用 Pi 运行时。Go 负责业务、权限、工具执行与结果验收；Pi SDK 负责模型循环、会话、流式事件和压缩。部署与配置见 [Pi 运行时](pi-runtime.md)。
+SecAI 仅使用 Pi 运行时。Go 负责业务、权限、工具执行与结果验收；Pi SDK 负责模型循环、会话、流式事件和压缩。部署与配置见 [Pi 运行时](pi-runtime.md)。
 
 ## 入口与模式
 

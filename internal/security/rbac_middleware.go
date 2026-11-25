@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 
 	"github.com/gin-gonic/gin"
 )

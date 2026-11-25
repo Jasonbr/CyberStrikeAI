@@ -11,10 +11,10 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/deepassessment"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/deepassessment"
+	"secai/internal/security"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )

@@ -2,7 +2,7 @@ package deepassessment
 
 import (
 	"context"
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 	"fmt"
 	"sync/atomic"
 	"testing"

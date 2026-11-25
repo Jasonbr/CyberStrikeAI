@@ -1,7 +1,7 @@
 package c2
 
 import (
-	"cyberstrike-ai/internal/database"
+	"secai/internal/database"
 	"go.uber.org/zap"
 	"net/http"
 	"net/http/httptest"

@@ -5,10 +5,10 @@ import (
 	"errors"
 	"strings"
 
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/deepassessment"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/authctx"
+	"secai/internal/database"
+	"secai/internal/deepassessment"
+	"secai/internal/security"
 )
 
 const assessmentAssetLimit = 5000

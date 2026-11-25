@@ -5,8 +5,8 @@ import (
 	"io"
 	"net/http"
 
-	"cyberstrike-ai/internal/deepassessment"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/deepassessment"
+	"secai/internal/security"
 	"github.com/gin-gonic/gin"
 )
 

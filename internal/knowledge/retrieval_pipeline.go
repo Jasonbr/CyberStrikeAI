@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"go.uber.org/zap"
 )

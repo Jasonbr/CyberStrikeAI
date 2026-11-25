@@ -3,7 +3,7 @@ package reasoning
 import (
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 var reasoningPayloadKeysForTest = []string{"thinking", "reasoning_effort", "output_config", "reasoning"}

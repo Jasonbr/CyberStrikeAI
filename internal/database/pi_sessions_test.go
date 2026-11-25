@@ -1,7 +1,7 @@
 package database
 
 import (
-	"cyberstrike-ai/internal/agentruntime"
+	"secai/internal/agentruntime"
 	"go.uber.org/zap"
 	"os"
 	"path/filepath"

@@ -13,7 +13,7 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"go.uber.org/zap"
 )

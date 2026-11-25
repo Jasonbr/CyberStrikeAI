@@ -2,8 +2,8 @@ package deepassessment
 
 import (
 	"context"
-	"cyberstrike-ai/internal/agentruntime"
-	"cyberstrike-ai/internal/database"
+	"secai/internal/agentruntime"
+	"secai/internal/database"
 	"encoding/json"
 	"errors"
 	"sync/atomic"

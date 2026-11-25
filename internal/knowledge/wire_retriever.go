@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/openai"
+	"secai/internal/config"
+	"secai/internal/openai"
 
 	"go.uber.org/zap"
 )

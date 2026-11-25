@@ -25,7 +25,7 @@ Do not start with MCP unless the Agent must actively call your capability. For �
 
 ## Burp Suite Extension
 
-Java extension under `plugins/burp-suite/cyberstrikeai-burp-extension/`. Typical flow: read HTTP from Burp → format prompt → call CyberStrikeAI SSE → show Progress/Final in a Burp tab.
+Java extension under `plugins/burp-suite/cyberstrikeai-burp-extension/`. Typical flow: read HTTP from Burp → format prompt → call SecAI SSE → show Progress/Final in a Burp tab.
 
 Build: JDK + Gradle/Maven → `bash build-mvn.sh` → `dist/cyberstrikeai-burp-extension.jar`.
 

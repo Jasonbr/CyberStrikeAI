@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/multiagent"
+	"secai/internal/database"
+	"secai/internal/multiagent"
 	"go.uber.org/zap"
 )
 

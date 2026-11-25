@@ -6,9 +6,9 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/security"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/security"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"

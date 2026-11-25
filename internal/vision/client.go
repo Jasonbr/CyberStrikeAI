@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/openai"
+	"secai/internal/config"
+	"secai/internal/openai"
 )
 
 // Client 调用独立 Vision ChatModel（单次 Generate）。

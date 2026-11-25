@@ -2,10 +2,10 @@ package multiagent
 
 import (
 	"context"
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/reasoning"
+	"secai/internal/agent"
+	"secai/internal/config"
+	"secai/internal/database"
+	"secai/internal/reasoning"
 	"fmt"
 	"go.uber.org/zap"
 )

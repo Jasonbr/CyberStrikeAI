@@ -1,6 +1,6 @@
 # Pi 原生运行时
 
-CyberStrikeAI 仅使用 Pi 1.5.2（`@earendil-works/pi-coding-agent`、`pi-ai`），Go 保留业务、权限、工具执行和证据管理。个人主仓库为 [Sycun/CyberStrikeAI](https://github.com/Sycun/CyberStrikeAI)，官方贡献 fork 为 [CyberStrikeAI-upstream-fork](https://github.com/Sycun/CyberStrikeAI-upstream-fork)。
+SecAI 仅使用 Pi 1.5.2（`@earendil-works/pi-coding-agent`、`pi-ai`），Go 保留业务、权限、工具执行和证据管理。个人主仓库为 [Sycun/SecAI](https://github.com/Sycun/SecAI)，官方贡献 fork 为 [SecAI-upstream-fork](https://github.com/Sycun/SecAI-upstream-fork)。
 
 维护时优先使用当前锁定版本的 Pi SDK 公共接口。只有需要项目权限、业务记录或兼容行为时，才在宿主或 Worker 增加逻辑。
 
@@ -73,4 +73,4 @@ SDK 集成测试使用本地模拟模型和无副作用的工具夹具，覆盖 
 
 2026-11-11 已用现有默认模型完成一次隔离回声工具闭环：模型调用 echo，Go 执行后返回 PONG，Pi 正常结束。该验证只使用合成消息和回声工具，未执行安全测试或更改生产服务；不代表长任务、全部模型渠道或效果指标已验收。
 
-新安装示例的 update.repo 指向 Sycun/CyberStrikeAI；现有安装需单独核对更新来源。本次源码迁移不修改运行中的生产配置。
+新安装示例的 update.repo 指向 Sycun/SecAI；现有安装需单独核对更新来源。本次源码迁移不修改运行中的生产配置。

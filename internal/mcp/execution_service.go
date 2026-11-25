@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/runlease"
+	"secai/internal/authctx"
+	"secai/internal/runlease"
 
 	"github.com/google/uuid"
 	"go.uber.org/zap"

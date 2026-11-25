@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
+	"secai/internal/agent"
+	"secai/internal/config"
+	"secai/internal/database"
 )
 
 // Convert trusted legacy provenance into explicit message roles. Generated

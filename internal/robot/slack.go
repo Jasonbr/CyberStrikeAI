@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 
 	"github.com/slack-go/slack"
 	"github.com/slack-go/slack/slackevents"

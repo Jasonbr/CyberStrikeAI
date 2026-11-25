@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"secai/internal/config"
 )
 
 func TestStripReasoningFromChatCompletionBody(t *testing.T) {
